@@ -48,19 +48,19 @@ export function Pagination({
   const pageNumbers = getPageNumbers()
 
   return (
-    <div className="flex items-center justify-between w-full">
-      <div className="text-sm text-gray-500">
+    <div className="flex items-center justify-between w-full px-[26px] py-[13px] border-t border-[#E5E7EB]">
+      <div className="font-avenirNormal text-base font-normal text-[#374151] traclomg-[0%] leading-[15px]">
         Showing <span className="font-medium">{startResult}</span> to <span className="font-medium">{endResult}</span>{" "}
         of <span className="font-medium">{totalResults}</span> results
       </div>
 
       {showPageNumbers && totalPages > 1 && (
-        <div className="flex items-center space-x-1">
+        <div className="flex items-center border border-[#E5E7EB] rounded-[7px]">
           <button
             onClick={() => safeCurrentPage > 1 && onPageChange(safeCurrentPage - 1)}
             disabled={safeCurrentPage === 1}
             className={cn(
-              "p-2 rounded-md",
+              "py-[13px] px-[10px] border-r",
               safeCurrentPage === 1 ? "text-gray-400 cursor-not-allowed" : "hover:bg-gray-100",
             )}
             aria-label="Previous page"
@@ -73,8 +73,8 @@ export function Pagination({
               key={page}
               onClick={() => onPageChange(page)}
               className={cn(
-                "w-8 h-8 rounded-md text-sm",
-                safeCurrentPage === page ? "bg-rose-100 text-rose-800" : "hover:bg-gray-100",
+                "w-[46px] h-[42px] text-base text-[#374151] font-medium leading-[120%] tracking-[0%] border-r border-[#D1D5DB]",
+                safeCurrentPage === page ? "bg-[#FADADD] text-[#891D33]" : "hover:bg-gray-100",
               )}
               aria-label={`Page ${page}`}
               aria-current={safeCurrentPage === page ? "page" : undefined}
@@ -87,7 +87,7 @@ export function Pagination({
             onClick={() => safeCurrentPage < totalPages && onPageChange(safeCurrentPage + 1)}
             disabled={safeCurrentPage === totalPages}
             className={cn(
-              "p-2 rounded-md",
+              "py-[13px] px-[10px]",
               safeCurrentPage === totalPages ? "text-gray-400 cursor-not-allowed" : "hover:bg-gray-100",
             )}
             aria-label="Next page"

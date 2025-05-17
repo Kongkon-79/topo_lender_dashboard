@@ -224,9 +224,9 @@ export function GoogleStyleCalendar({
                   </div>
 
                   <div className="mt-1 space-y-1 max-h-[80px] overflow-y-auto">
-                    {dayEvents.slice(0, 3).map((event) => (
+                    {dayEvents.slice(0, 3).map((event, index) => (
                       <div
-                        key={event.id}
+                        key={index}
                         className={cn(
                           "px-2 py-1 text-xs rounded truncate cursor-pointer",
                           event.color || "bg-blue-100 text-blue-800"
