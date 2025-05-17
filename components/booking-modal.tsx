@@ -1,93 +1,113 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { X } from "lucide-react"
-import Image from "next/image"
+import { useState, useEffect } from "react";
+import { X } from "lucide-react";
+import Image from "next/image";
+import { cn } from "@/lib/utils";
 
 interface Dress {
-  id: string
-  name?: string
-  brand: string
-  price: string
-  image: string
+  id: string;
+  name?: string;
+  brand: string;
+  price: string;
+  image: string;
 }
 
 interface BookingModalProps {
-  isOpen: boolean
-  onClose: () => void
-  onSave: (bookingData: any) => void
-  dresses: Dress[]
+  isOpen: boolean;
+  onClose: () => void;
+  onSave: (bookingData: any) => void;
+  dresses: Dress[];
+  initialStartDate?: string;
+  initialEndDate?: string;
 }
 
-export function BookingModal({ isOpen, onClose, onSave, dresses }: BookingModalProps) {
-  const [selectedDressId, setSelectedDressId] = useState<string | null>(null)
-  const [selectedDress, setSelectedDress] = useState<Dress | null>(null)
-  const [startDate, setStartDate] = useState<string>("")
-  const [endDate, setEndDate] = useState<string>("")
-  const [status, setStatus] = useState<string>("Confirmed")
-  const [description, setDescription] = useState<string>("")
-  const [showDressDetails, setShowDressDetails] = useState(false)
-  const [errors, setErrors] = useState<{ [key: string]: string }>({})
+export function BookingModal({
+  isOpen,
+  onClose,
+  onSave,
+  dresses,
+  initialStartDate,
+  initialEndDate,
+}: BookingModalProps) {
+  const [selectedDressId, setSelectedDressId] = useState<string | null>(null);
+  const [selectedDress, setSelectedDress] = useState<Dress | null>(null);
+  const [startDate, setStartDate] = useState<string>("");
+  const [endDate, setEndDate] = useState<string>("");
+  const [status, setStatus] = useState<string>("Confirmed");
+  const [description, setDescription] = useState<string>("");
+  const [showDressDetails, setShowDressDetails] = useState(false);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [customerName, setCustomerName] = useState<string>("");
+  const [customerEmail, setCustomerEmail] = useState<string>("");
+  const [customerPhone, setCustomerPhone] = useState<string>("");
 
   useEffect(() => {
     try {
       if (selectedDressId) {
-        const dress = dresses.find((d) => d.id === selectedDressId)
+        const dress = dresses.find((d) => d.id === selectedDressId);
         if (dress) {
-          setSelectedDress(dress)
-          setShowDressDetails(true)
+          setSelectedDress(dress);
+          setShowDressDetails(true);
         } else {
-          setSelectedDress(null)
-          setShowDressDetails(false)
+          setSelectedDress(null);
+          setShowDressDetails(false);
         }
       } else {
-        setSelectedDress(null)
-        setShowDressDetails(false)
+        setSelectedDress(null);
+        setShowDressDetails(false);
       }
     } catch (err) {
-      console.error("Error selecting dress:", err)
-      setSelectedDress(null)
-      setShowDressDetails(false)
+      console.error("Error selecting dress:", err);
+      setSelectedDress(null);
+      setShowDressDetails(false);
     }
-  }, [selectedDressId, dresses])
+  }, [selectedDressId, dresses]);
 
   // Reset form when modal opens
   useEffect(() => {
     if (isOpen) {
-      setSelectedDressId(null)
-      setStartDate("")
-      setEndDate("")
-      setStatus("Confirmed")
-      setDescription("")
-      setErrors({})
+      setSelectedDressId(null);
+      setStartDate(initialStartDate || "");
+      setEndDate(initialEndDate || "");
+      setStatus("Confirmed");
+      setDescription("");
+      setCustomerName("");
+      setCustomerEmail("");
+      setCustomerPhone("");
+      setErrors({});
     }
-  }, [isOpen])
+  }, [isOpen, initialStartDate, initialEndDate]);
 
   const validateForm = () => {
-    const newErrors: { [key: string]: string } = {}
+    const newErrors: { [key: string]: string } = {};
 
     if (!selectedDressId) {
-      newErrors.dress = "Please select a dress"
+      newErrors.dress = "Please select a dress";
     }
 
     if (!startDate) {
-      newErrors.startDate = "Please select a start date"
+      newErrors.startDate = "Please select a start date";
     }
 
     if (!endDate) {
-      newErrors.endDate = "Please select an end date"
+      newErrors.endDate = "Please select an end date";
     } else if (startDate && new Date(endDate) <= new Date(startDate)) {
-      newErrors.endDate = "End date must be after start date"
+      newErrors.endDate = "End date must be after start date";
     }
 
-    setErrors(newErrors)
-    return Object.keys(newErrors).length === 0
-  }
+    if (!customerName) {
+      newErrors.customerName = "Please enter customer name";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = () => {
     try {
       if (!validateForm()) {
-        return
+        return;
       }
 
       onSave({
@@ -96,29 +116,39 @@ export function BookingModal({ isOpen, onClose, onSave, dresses }: BookingModalP
         endDate,
         status,
         description,
-      })
+        customerName,
+        customerEmail,
+        customerPhone,
+      });
 
       // Reset the form
-      setSelectedDressId(null)
-      setStartDate("")
-      setEndDate("")
-      setStatus("Confirmed")
-      setDescription("")
+      setSelectedDressId(null);
+      setStartDate("");
+      setEndDate("");
+      setStatus("Confirmed");
+      setDescription("");
+      setCustomerName("");
+      setCustomerEmail("");
+      setCustomerPhone("");
 
-      onClose()
+      onClose();
     } catch (err) {
-      console.error("Error submitting booking:", err)
+      console.error("Error submitting booking:", err);
     }
-  }
+  };
 
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         <div className="flex justify-between items-center p-6 border-b">
           <h2 className="text-2xl font-medium">Manual Booking</h2>
-          <button onClick={onClose} className="p-1 rounded-full hover:bg-gray-100" aria-label="Close">
+          <button
+            onClick={onClose}
+            className="p-1 rounded-full hover:bg-gray-100"
+            aria-label="Close"
+          >
             <X className="h-6 w-6" />
           </button>
         </div>
@@ -134,7 +164,7 @@ export function BookingModal({ isOpen, onClose, onSave, dresses }: BookingModalP
                 onChange={(e) => setSelectedDressId(e.target.value)}
                 className={cn(
                   "w-full p-3 border rounded-md focus:outline-none focus:ring-1 focus:ring-[#8c1c3a]",
-                  errors.dress && "border-red-500",
+                  errors.dress && "border-red-500"
                 )}
                 required
               >
@@ -145,7 +175,9 @@ export function BookingModal({ isOpen, onClose, onSave, dresses }: BookingModalP
                   </option>
                 ))}
               </select>
-              {errors.dress && <p className="text-red-500 text-xs mt-1">{errors.dress}</p>}
+              {errors.dress && (
+                <p className="text-red-500 text-xs mt-1">{errors.dress}</p>
+              )}
             </div>
           </div>
 
@@ -163,9 +195,15 @@ export function BookingModal({ isOpen, onClose, onSave, dresses }: BookingModalP
                 </div>
 
                 <div className="flex flex-col justify-center">
-                  <p className="text-lg font-medium">{selectedDress.name || `DRESS ID: ${selectedDress.id}`}</p>
-                  <p className="text-sm text-gray-600">Brand: {selectedDress.brand}</p>
-                  <p className="text-sm text-gray-600">Price: {selectedDress.price}</p>
+                  <p className="text-lg font-medium">
+                    {selectedDress.name || `DRESS ID: ${selectedDress.id}`}
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Brand: {selectedDress.brand}
+                  </p>
+                  <p className="text-sm text-gray-600">
+                    Price: {selectedDress.price}
+                  </p>
                 </div>
               </div>
             </div>
@@ -182,12 +220,14 @@ export function BookingModal({ isOpen, onClose, onSave, dresses }: BookingModalP
                 onChange={(e) => setStartDate(e.target.value)}
                 className={cn(
                   "w-full p-3 border rounded-md focus:outline-none focus:ring-1 focus:ring-[#8c1c3a]",
-                  errors.startDate && "border-red-500",
+                  errors.startDate && "border-red-500"
                 )}
                 min={new Date().toISOString().split("T")[0]}
                 required
               />
-              {errors.startDate && <p className="text-red-500 text-xs mt-1">{errors.startDate}</p>}
+              {errors.startDate && (
+                <p className="text-red-500 text-xs mt-1">{errors.startDate}</p>
+              )}
             </div>
 
             <div>
@@ -200,12 +240,62 @@ export function BookingModal({ isOpen, onClose, onSave, dresses }: BookingModalP
                 onChange={(e) => setEndDate(e.target.value)}
                 className={cn(
                   "w-full p-3 border rounded-md focus:outline-none focus:ring-1 focus:ring-[#8c1c3a]",
-                  errors.endDate && "border-red-500",
+                  errors.endDate && "border-red-500"
                 )}
                 min={startDate || new Date().toISOString().split("T")[0]}
                 required
               />
-              {errors.endDate && <p className="text-red-500 text-xs mt-1">{errors.endDate}</p>}
+              {errors.endDate && (
+                <p className="text-red-500 text-xs mt-1">{errors.endDate}</p>
+              )}
+            </div>
+          </div>
+
+          <div>
+            <label className="block mb-2 text-sm font-medium">
+              Customer Name <span className="text-[#8c1c3a]">*</span>
+            </label>
+            <input
+              type="text"
+              value={customerName}
+              onChange={(e) => setCustomerName(e.target.value)}
+              className={cn(
+                "w-full p-3 border rounded-md focus:outline-none focus:ring-1 focus:ring-[#8c1c3a]",
+                errors.customerName && "border-red-500"
+              )}
+              placeholder="Enter customer name"
+              required
+            />
+            {errors.customerName && (
+              <p className="text-red-500 text-xs mt-1">{errors.customerName}</p>
+            )}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block mb-2 text-sm font-medium">
+                Customer Email <span className="text-gray-400">(Optional)</span>
+              </label>
+              <input
+                type="email"
+                value={customerEmail}
+                onChange={(e) => setCustomerEmail(e.target.value)}
+                className="w-full p-3 border rounded-md focus:outline-none focus:ring-1 focus:ring-[#8c1c3a]"
+                placeholder="customer@example.com"
+              />
+            </div>
+
+            <div>
+              <label className="block mb-2 text-sm font-medium">
+                Customer Phone <span className="text-gray-400">(Optional)</span>
+              </label>
+              <input
+                type="tel"
+                value={customerPhone}
+                onChange={(e) => setCustomerPhone(e.target.value)}
+                className="w-full p-3 border rounded-md focus:outline-none focus:ring-1 focus:ring-[#8c1c3a]"
+                placeholder="(123) 456-7890"
+              />
             </div>
           </div>
 
@@ -240,7 +330,10 @@ export function BookingModal({ isOpen, onClose, onSave, dresses }: BookingModalP
         </div>
 
         <div className="p-6 border-t flex justify-between items-center">
-          <button onClick={onClose} className="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50"
+          >
             Cancel
           </button>
           <button
@@ -252,10 +345,5 @@ export function BookingModal({ isOpen, onClose, onSave, dresses }: BookingModalP
         </div>
       </div>
     </div>
-  )
-}
-
-// Helper function for class names
-function cn(...classes: (string | boolean | undefined)[]) {
-  return classes.filter(Boolean).join(" ")
+  );
 }
