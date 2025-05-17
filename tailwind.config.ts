@@ -48,6 +48,7 @@ const config: Config = {
        fontFamily: {
         poppins: ['var(--font-poppins)', 'sans-serif'],
         avenir: ["var(--font-avenir)", "sans-serif"],
+        avenirNormal: ["var(--font-avenir)", "sans-serif"],
       },
     },
   },
