@@ -20,7 +20,7 @@ export function Layout({ children }: LayoutProps) {
   }
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen ">
       {/* Sidebar */}
       <div className="fixed left-0 top-0 bottom-0 w-[208px] bg-[#891d33] text-white flex flex-col z-10">
         <div className="p-8 flex justify-center">

@@ -142,28 +142,28 @@ export function BookingModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
       <div className="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
-        <div className="flex justify-between items-center p-6 border-b">
-          <h2 className="text-2xl font-medium">Manual Booking</h2>
+        <div className="flex justify-between items-center px-[60px] pt-[60px]">
+          <h2 className="font-avenirNormal text-[32px] font-normal leading-[120%] trackging-[0%] text-black">Manual Booking</h2>
           <button
             onClick={onClose}
             className="p-1 rounded-full hover:bg-gray-100"
             aria-label="Close"
           >
-            <X className="h-6 w-6" />
+            <X className="h-5 w-5" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-[60px] space-y-6">
           <div>
-            <label className="block mb-2 text-sm font-medium">
-              Select Dress <span className="text-[#8c1c3a]">*</span>
+            <label className="block pb-[25px] text-[24px] font-normal leading-[120%] text-black tracking-[0%] ">
+              Select Dress <span className="text-[#891D33] pl-5">*</span>
             </label>
             <div className="relative">
               <select
                 value={selectedDressId || ""}
                 onChange={(e) => setSelectedDressId(e.target.value)}
                 className={cn(
-                  "w-full p-3 border rounded-md focus:outline-none focus:ring-1 focus:ring-[#8c1c3a]",
+                  "w-1/2 p-3 border rounded-md focus:outline-none focus:ring-1 focus:ring-[#8c1c3a]",
                   errors.dress && "border-red-500"
                 )}
                 required
@@ -209,9 +209,9 @@ export function BookingModal({
             </div>
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
-              <label className="block mb-2 text-sm font-medium">
+              <label className="block text-[24px] font-normal leading-[120%] text-black tracking-[0%] pb-[25px]">
                 Start Date <span className="text-[#8c1c3a]">*</span>
               </label>
               <input
@@ -231,7 +231,7 @@ export function BookingModal({
             </div>
 
             <div>
-              <label className="block mb-2 text-sm font-medium">
+              <label className="block text-[24px] font-normal leading-[120%] text-black tracking-[0%] pb-[25px]">
                 End Date <span className="text-[#8c1c3a]">*</span>
               </label>
               <input
@@ -249,9 +249,24 @@ export function BookingModal({
                 <p className="text-red-500 text-xs mt-1">{errors.endDate}</p>
               )}
             </div>
+            <div>
+            <label className="block text-[24px] font-normal leading-[120%] text-black tracking-[0%] pb-[25px]">
+              Status <span className="text-[#8c1c3a]">*</span>
+            </label>
+            <select
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+              className="w-full p-3 border rounded-md focus:outline-none focus:ring-1 focus:ring-[#8c1c3a]"
+            >
+              <option value="Confirmed">Confirmed</option>
+              <option value="Pending">Pending</option>
+              <option value="Shipped">Shipped</option>
+              <option value="Completed">Completed</option>
+            </select>
+          </div>
           </div>
 
-          <div>
+          {/* <div>
             <label className="block mb-2 text-sm font-medium">
               Customer Name <span className="text-[#8c1c3a]">*</span>
             </label>
@@ -297,26 +312,12 @@ export function BookingModal({
                 placeholder="(123) 456-7890"
               />
             </div>
-          </div>
+          </div> */}
+
+          
 
           <div>
-            <label className="block mb-2 text-sm font-medium">
-              Status <span className="text-[#8c1c3a]">*</span>
-            </label>
-            <select
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
-              className="w-full p-3 border rounded-md focus:outline-none focus:ring-1 focus:ring-[#8c1c3a]"
-            >
-              <option value="Confirmed">Confirmed</option>
-              <option value="Pending">Pending</option>
-              <option value="Shipped">Shipped</option>
-              <option value="Completed">Completed</option>
-            </select>
-          </div>
-
-          <div>
-            <label className="block mb-2 text-sm font-medium">
+            <label className="block text-[24px] font-normal leading-[120%] text-black tracking-[0%] pb-[25px]">
               Description <span className="text-gray-400">(Optional)</span>
             </label>
             <textarea
@@ -329,19 +330,14 @@ export function BookingModal({
           </div>
         </div>
 
-        <div className="p-6 border-t flex justify-between items-center">
-          <button
-            onClick={onClose}
-            className="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-50"
-          >
-            Cancel
-          </button>
+        <div className="flex flex-col justify-center items-center pb-[60px]">
           <button
             onClick={handleSubmit}
-            className="px-6 py-3 bg-[#8c1c3a] text-white rounded-md shadow hover:bg-[#7a1832] transition-colors"
+            className="font-avenirNormal text-base text-white font-normal bg-[#891D33] leading-[120%] tracking-[0%] py-[16px] px-[32px] rounded-[8px] "
           >
-            Create Booking
+            Sync to calendar
           </button>
+          <p className="text-lg font-normal text-black leading-[24px] trackgin-[0%] font-avenirNormal pt-[15px]">Last since: 2h ago </p>
         </div>
       </div>
     </div>
