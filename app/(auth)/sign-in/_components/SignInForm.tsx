@@ -1,5 +1,5 @@
 "use client";
-
+import { signIn } from "next-auth/react";
 import { useState } from "react";
 import Link from "next/link";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
@@ -18,6 +18,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import AuthHeader from "@/components/shared/Auth/AuthHeader";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 // Define form schema with Zod
 const formSchema = z.object({
@@ -31,9 +33,9 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 export default function SignInForm() {
+  const router = useRouter()
   const [showPassword, setShowPassword] = useState(false);
 
-  // Initialize form with React Hook Form and Zod validation
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -44,9 +46,25 @@ export default function SignInForm() {
   });
 
   // Form submission handler
-  function onSubmit(values: FormValues) {
-    console.log(values);
-    // Handle login logic here
+  async function onSubmit(values: FormValues) {
+    try {
+      const res = await signIn("credentials", {
+        email: values.email,
+        password: values.password,
+        redirect: false,
+      });
+      if (res?.error) {
+        throw new Error(res.error);
+      }
+      toast.success("Login successful");
+      // window.location.href = "/";
+      router.push('/')
+    } catch (error) {
+      console.error("Login error:", error);
+      toast.error("Login failed. Please check your credentials.");
+    }
+
+    console.log(values)
   }
 
   return (

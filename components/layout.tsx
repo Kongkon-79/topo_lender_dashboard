@@ -1,23 +1,24 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { User } from "lucide-react"
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { User } from "lucide-react";
+import { signOut } from "next-auth/react";
 
 interface LayoutProps {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export function Layout({ children }: LayoutProps) {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   const isActive = (path: string) => {
-    if (path === "/" && pathname === "/") return true
-    if (path !== "/" && pathname.startsWith(path)) return true
-    return false
-  }
+    if (path === "/" && pathname === "/") return true;
+    if (path !== "/" && pathname.startsWith(path)) return true;
+    return false;
+  };
 
   return (
     <div className="flex min-h-screen">
@@ -87,7 +88,9 @@ export function Layout({ children }: LayoutProps) {
           <Link
             href="/account-settings"
             className={`py-2.5 px-4 rounded-md text-sm font-medium transition-colors ${
-              isActive("/account-settings") ? "bg-white/20" : "hover:bg-white/10"
+              isActive("/account-settings")
+                ? "bg-white/20"
+                : "hover:bg-white/10"
             }`}
           >
             Account Settings
@@ -95,7 +98,10 @@ export function Layout({ children }: LayoutProps) {
         </nav>
 
         <div className="mt-auto p-6">
-          <button className="text-xs uppercase tracking-wider border-t border-white/30 pt-4 w-full text-left font-medium">
+          <button
+            onClick={() => signOut({ callbackUrl: "/" })}
+            className="text-xs uppercase tracking-wider border-t border-white/30 pt-4 w-full text-left font-medium"
+          >
             SIGN OUT
           </button>
         </div>
@@ -134,5 +140,5 @@ export function Layout({ children }: LayoutProps) {
         </footer>
       </div>
     </div>
-  )
+  );
 }

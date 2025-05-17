@@ -120,23 +120,26 @@ export function NewDisputeModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center p-4">
-      <div className="bg-white rounded-lg shadow-lg w-full max-w-2xl overflow-hidden relative">
+    <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center p-[60px]">
+      <div className="bg-white rounded-lg shadow-lg w-full max-w-5xl p-[60px] overflow-hidden relative">
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
           aria-label="Close"
-        >
-          <X className="h-6 w-6" />
-        </button>
+        ></button>
 
-        <div className="p-6">
-          <h2 className="text-2xl font-bold mb-6">Submit New Dispute</h2>
+        <div className="p-6 ">
+          <div className="flex items-center justify-between">
+            <h2 className="text-[32px] mb-[60px] font-normal">
+              Submit New Dispute
+            </h2>
+            <X     onClick={onClose}  className="h-6 w-6 cursor-pointer  mb-[60px] " />
+          </div>
 
           <div className="space-y-6">
             <div>
-              <label className="block mb-2 text-base font-medium">
-                Booking ID <span className="text-red-500">*</span>
+              <label className="block mb-[25px] text-base font-medium  ">
+                Booking ID <span className="text-red-500 ml-[20px]">*</span>
               </label>
               <div className="relative">
                 <button
@@ -201,8 +204,8 @@ export function NewDisputeModal({
             </div>
 
             <div>
-              <label className="block mb-2 text-base font-medium">
-                Reason <span className="text-red-500">*</span>
+              <label className="block mb-[25px] text-base font-medium">
+                Reason <span className="text-red-500 ml-[20px]">*</span>
               </label>
               <div className="relative">
                 <button
@@ -266,8 +269,8 @@ export function NewDisputeModal({
             </div>
 
             <div>
-              <label className="block mb-2 text-base font-medium">
-                Description <span className="text-red-500">*</span>
+              <label className="block mb-[15px] text-base font-normal">
+                Description <span className="text-red-500  ml-[20px]">*</span>
               </label>
               <textarea
                 name="description"
@@ -286,10 +289,12 @@ export function NewDisputeModal({
             </div>
 
             <div>
-              <label className="block mb-2 text-base font-medium">
-                Upload Evidence <span className="text-red-500">*</span>
+              <label className="block mb-[15px] text-base font-normal">
+                Upload Evidence{" "}
+                <span className="text-red-500 ml-[20px]">*</span>
               </label>
               <FileUpload
+                className=""
                 onFileChange={handleFileChange}
                 buttonText="Upload File"
                 placeholder="File name"
@@ -298,11 +303,11 @@ export function NewDisputeModal({
             </div>
           </div>
 
-          <div className="flex justify-end mt-8 gap-4">
+          <div className="flex justify-center mt-8 gap-[30px]">
             <button
               type="button"
               onClick={onClose}
-              className="px-6 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50"
+              className="px-[16px] py-[11px] border border-[#891D33] text-[#891D33] rounded-md  hover:bg-gray-50"
             >
               Close
             </button>
@@ -310,7 +315,7 @@ export function NewDisputeModal({
               type="button"
               onClick={handleSubmit}
               disabled={loading}
-              className="px-6 py-2 bg-[#8c1c3a] text-white rounded-md hover:bg-[#7a1832] transition-colors disabled:opacity-70"
+              className="px-[16px] py-[10px] bg-[#8c1c3a] text-[16px] rounded-lg  text-white  hover:bg-[#7a1832] transition-colors disabled:opacity-70"
             >
               {loading ? "Submitting..." : "Submit Dispute"}
             </button>

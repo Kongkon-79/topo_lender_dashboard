@@ -11,7 +11,7 @@ interface StatCardProps {
 export const StatCard = memo(function StatCard({ title, value, className }: StatCardProps) {
   return (
     <div className={cn("bg-white p-6 rounded-md shadow-sm", className)}>
-      <h3 className="text-sm font-medium text-gray-600 mb-2">{title}</h3>
+      <h3 className="text-sm font-medium text-black mb-2">{title}</h3>
       <p className="text-2xl font-bold">{value}</p>
     </div>
   )

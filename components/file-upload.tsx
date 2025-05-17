@@ -45,12 +45,12 @@ export function FileUpload({
 
   return (
     <div className={cn("w-full", className)}>
-      <div className="flex items-center border border-gray-300 rounded-md overflow-hidden">
+      <div className="flex items-center border p-[10px] border-gray-300 rounded-md overflow-hidden">
         <div className="flex-grow px-3 py-2 text-sm text-gray-500">
           {selectedFiles.length > 0
             ? selectedFiles.map((file, index) => (
                 <div key={index} className="flex items-center justify-between">
-                  <span className="truncate">{file.name}</span>
+                  <span className="truncate " >{file.name}</span>
                   <button
                     type="button"
                     onClick={() => removeFile(index)}
@@ -65,7 +65,7 @@ export function FileUpload({
         </div>
         <label
           htmlFor="file-upload"
-          className="cursor-pointer bg-[#8c1c3a] text-white px-4 py-2 text-sm font-medium"
+          className="cursor-pointer bg-[#8c1c3a] text-white rounded-lg text-[16px] font-normal px-4 py-2 text-sm "
         >
           {buttonText}
           <input

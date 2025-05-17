@@ -58,7 +58,7 @@ export function SelectDropdown({
     <div className="relative" ref={dropdownRef}>
       <div
         className={cn(
-          "flex items-center justify-between px-4 py-2.5 border rounded-md bg-white cursor-pointer transition-colors",
+          "flex items-center  justify-end px-4 py-2.5 border rounded-md bg-white cursor-pointer transition-colors",
           isOpen && "border-primary",
           disabled && "opacity-50 cursor-not-allowed",
           className,
@@ -76,7 +76,7 @@ export function SelectDropdown({
         aria-haspopup="listbox"
       >
         <span className="text-sm font-medium truncate">{selectedValue || label || placeholder}</span>
-        <ChevronDown className={cn("h-4 w-4 text-gray-400 transition-transform", isOpen && "transform rotate-180")} />
+        {/* <ChevronDown className={cn("h-4 w-4  text-white transition-transform", isOpen && "transform rotate-180")} /> */}
       </div>
 
       {isOpen && (

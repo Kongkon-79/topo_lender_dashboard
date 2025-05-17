@@ -4,6 +4,7 @@ import { Poppins } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
 import localFont from "next/font/local";
+import AuthProvider from "@/components/Providers/AuthProvider";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -36,10 +37,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${poppins.variable} ${avenirBold.variable} ${avenirNormal.variable}`}>
+    <html
+      lang="en"
+      className={`${poppins.variable} ${avenirBold.variable} ${avenirNormal.variable}`}
+    >
       <body>
-        <Toaster position="top-center" richColors closeButton />
-        {children}
+        <AuthProvider>
+          <Toaster position="top-center" richColors closeButton />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

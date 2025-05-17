@@ -16,6 +16,7 @@ import type {
   Dispute,
   ReasonOption,
 } from "@/types/disputes";
+// import Link from "next/link";
 
 export default function EscalateDisputePage({
   params,
@@ -162,62 +163,68 @@ export default function EscalateDisputePage({
 
   return (
     <Layout>
-      <div className="p-8 bg-[#faf9f7]">
-        <h2 className="text-2xl font-bold mb-8">ESCALATE DISPUTE</h2>
+      <div className="p-[80px] bg-[#faf9f7]">
+        <h2 className="text-[32px] font-normal mb-[60px]">ESCALATE DISPUTE</h2>
 
         {/* Dispute Summary */}
-        <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-semibold">Dispute Summary</h3>
-            <span className="px-3 py-1 rounded-full text-xs bg-blue-100 text-blue-800">
+        <div className="bg-white p-[30px] rounded-lg shadow-[0px_4px_10px_0px_#0000001A] mb-6">
+          <div className="flex items-center justify-between mb-[30.5px]">
+            <h3 className="text-[28px] font-normal">Dispute Summary</h3>
+            <span className="px-[16px] py-[8px] rounded-full text-xs bg-[#9FCCF7] text-[#2D26FD]">
               In Progress
             </span>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2">
-            <div className="space-y-2">
+            <div className="space-y-[15px]">
               <p>
-                <span className="font-medium">Dispute ID:</span> {dispute.id}
+                <span className="font-normal text-[16px]">Dispute ID:</span>{" "}
+                {dispute.id}
               </p>
               <p>
-                <span className="font-medium">Booking ID:</span>{" "}
+                <span className="font-normal text-[16px]">Booking ID:</span>{" "}
                 {dispute.bookingId}
               </p>
               <p>
-                <span className="font-medium">Customer ID:</span>{" "}
+                <span className="font-normal text-[16px]">Customer ID:</span>{" "}
                 {dispute.customerId}
               </p>
               <p>
-                <span className="font-medium">Dress ID:</span> {dispute.dressId}
+                <span className="font-normal text-[16px]">Dress ID:</span>{" "}
+                {dispute.dressId}
               </p>
               <p>
-                <span className="font-medium">Customer Name:</span>{" "}
+                <span className="font-normal text-[16px]">Customer Name:</span>{" "}
                 {dispute.customerName}
               </p>
               <p>
-                <span className="font-medium">Dress Name:</span>{" "}
+                <span className="font-normal text-[16px]">Dress Name:</span>{" "}
                 {dispute.dressName || "Zimmermann Silk Gown"}
               </p>
               <p>
-                <span className="font-medium">Original Reason:</span>{" "}
-                <span className="text-red-600">Not Returned</span>
+                <span className="font-normal text-[16px] text-[#891D33]">
+                  Original Reason:
+                </span>{" "}
+                <span className="text-[#891D33]">Not Returned</span>
               </p>
             </div>
           </div>
         </div>
 
         {/* Escalation Details */}
-        <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
-          <h3 className="text-lg font-semibold mb-4">Escalation Details</h3>
+        <div className="bg-white p-[30px] rounded-lg shadow-[0px_4px_10px_0px_#0000001A] mb-6">
+          <h3 className="text-[24px] font-normal mb-[30px]">
+            Escalation Details
+          </h3>
 
           <div className="space-y-6">
             <div>
-              <label className="block mb-2 text-base font-medium">
-                Reason for Escalation <span className="text-red-500">*</span>
+              <label className="block mb-[15px] text-[18px] font-normal text-[#891D33]">
+                Reason for Escalation <span>*</span>
               </label>
               <div className="relative">
                 <button
                   type="button"
-                  className={`w-full text-left px-4 py-2.5 border rounded-lg ${
+                  className={`w-full text-left p-[15px] text-[#595959]  border border-[#E6E6E6] rounded-lg ${
                     errors.reason ? "border-red-500" : "border-gray-300"
                   } flex justify-between items-center`}
                   onClick={() => setReasonDropdownOpen(!reasonDropdownOpen)}
@@ -273,8 +280,8 @@ export default function EscalateDisputePage({
             </div>
 
             <div>
-              <label className="block mb-2 text-base font-medium">
-                Description <span className="text-red-500">*</span>
+              <label className="block mb-[15px] text-[18px] font-normal text-[#891D33]">
+                Description <span>*</span>
               </label>
               <textarea
                 name="description"
@@ -294,7 +301,7 @@ export default function EscalateDisputePage({
             </div>
 
             <div>
-              <label className="block mb-2 text-base font-medium">
+              <label className="block mb-[15px] text-[18px] font-normal text-[#891D33]">
                 Additional Evidence <span className="text-red-500">*</span>
               </label>
               <FileUpload
@@ -306,7 +313,7 @@ export default function EscalateDisputePage({
             </div>
 
             <div>
-              <label className="block mb-2 text-base font-medium">
+              <label className="block mb-[15px] text-[18px] font-normal text-[#891D33]">
                 Priority Level <span className="text-red-500">*</span>
               </label>
               <div className="flex space-x-6">
@@ -317,9 +324,9 @@ export default function EscalateDisputePage({
                     name="priorityLevel"
                     checked={formData.priorityLevel === "Standard"}
                     onChange={() => handleRadioChange("Standard")}
-                    className="h-4 w-4 text-[#8c1c3a] border-gray-300 focus:ring-[#8c1c3a]"
+                    className="h-4 w-4 mr-[15px] bg-[#891D33] text-[#8c1c3a] border-gray-300 focus:ring-[#8c1c3a]"
                   />
-                  <label htmlFor="standard" className="ml-2">
+                  <label htmlFor="standard" className="ml-2 text-[20px]">
                     Standard
                   </label>
                 </div>
@@ -330,9 +337,9 @@ export default function EscalateDisputePage({
                     name="priorityLevel"
                     checked={formData.priorityLevel === "High"}
                     onChange={() => handleRadioChange("High")}
-                    className="h-4 w-4 text-[#8c1c3a] border-gray-300 focus:ring-[#8c1c3a]"
+                    className="mr-[15px] bg-[#891D33] h-4 w-4 text-[#8c1c3a] border-gray-300 focus:ring-[#8c1c3a]"
                   />
-                  <label htmlFor="high" className="ml-2">
+                  <label htmlFor="high" className="ml-2 text-[20px]">
                     High
                   </label>
                 </div>
@@ -342,12 +349,14 @@ export default function EscalateDisputePage({
         </div>
 
         {/* Confirm Escalation */}
-        <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
-          <h3 className="text-lg font-semibold mb-4">Confirm Escalation</h3>
+        <div className="bg-white p-[30px] rounded-lg shadow-[0px_4px_10px_0px_#0000001A] mb-6">
+          <h3 className="text-[24px] font-normal mb-[30px]">
+            Confirm Escalation
+          </h3>
 
-          <div className="space-y-6">
+          <div className="space-y-[15px]">
             <div>
-              <label className="block mb-2 text-base font-medium">
+              <label className="block mb-[15px] text-[18px ] text-[#891D33] font-normal">
                 Enter Email / Phone Number{" "}
                 <span className="text-red-500">*</span>
               </label>
@@ -357,7 +366,7 @@ export default function EscalateDisputePage({
                 value={formData.contactInfo}
                 onChange={handleInputChange}
                 placeholder="e.g., ##"
-                className={`w-full px-4 py-2.5 border rounded-lg ${
+                className={`w-full  p-[15px] border rounded-lg ${
                   errors.contactInfo ? "border-red-500" : "border-gray-300"
                 }`}
               />
@@ -369,7 +378,7 @@ export default function EscalateDisputePage({
             </div>
 
             <div>
-              <label className="block mb-2 text-base font-medium">
+              <label className="block mb-2 text-[18px] text-[#891D33] font-normal">
                 Enter Password <span className="text-red-500">*</span>
               </label>
               <input
@@ -378,7 +387,7 @@ export default function EscalateDisputePage({
                 value={formData.password}
                 onChange={handleInputChange}
                 placeholder="e.g., ##"
-                className={`w-full px-4 py-2.5 border rounded-lg ${
+                className={`w-full p-[15px] border rounded-lg ${
                   errors.password ? "border-red-500" : "border-gray-300"
                 }`}
               />
@@ -390,10 +399,12 @@ export default function EscalateDisputePage({
         </div>
 
         {/* Additional Options */}
-        <div className="bg-white p-6 rounded-lg shadow-sm mb-6">
-          <h3 className="text-lg font-semibold mb-4">Additional Options</h3>
+        <div className="bg-white p-[30px] rounded-lg shadow-[0px_4px_10px_0px_#0000001A] mb-6">
+          <h3 className="text-[24px] font-normal mb-[30px]">
+            Additional Options
+          </h3>
 
-          <div className="space-y-4">
+          <div className="space-y-[33px]">
             <div className="flex items-center">
               <input
                 type="checkbox"
@@ -403,7 +414,7 @@ export default function EscalateDisputePage({
                 onChange={handleCheckboxChange}
                 className="h-4 w-4 text-[#8c1c3a] border-gray-300 rounded focus:ring-[#8c1c3a]"
               />
-              <label htmlFor="understand" className="ml-2 text-sm">
+              <label htmlFor="understand" className="ml-[30px] text-[16px]">
                 I understand that escalation may take up to 5 business days and
                 cannot be undone.
               </label>
@@ -418,7 +429,10 @@ export default function EscalateDisputePage({
                 onChange={handleCheckboxChange}
                 className="h-4 w-4 text-[#8c1c3a] border-gray-300 rounded focus:ring-[#8c1c3a]"
               />
-              <label htmlFor="scheduleFollowUp" className="ml-2 text-sm">
+              <label
+                htmlFor="scheduleFollowUp"
+                className="ml-[30px] text-[16px]"
+              >
                 Schedule a follow-up call with support
               </label>
             </div>
@@ -426,25 +440,20 @@ export default function EscalateDisputePage({
         </div>
 
         {/* Actions */}
-        <div className="bg-white p-6 rounded-lg shadow-sm">
-          <h3 className="text-lg font-semibold mb-4">Actions</h3>
-          <div className="flex space-x-4">
-            <button
-              onClick={handleSubmit}
-              disabled={submitting}
-              className="px-4 py-2 bg-[#8c1c3a] text-white rounded-md hover:bg-[#7a1832] disabled:opacity-70"
-            >
-              {submitting ? "Processing..." : "Escalate Dispute"}
+        <div className="bg-white p-[30px] rounded-lg shadow-[0px_4px_10px_0px_#0000001A]">
+          <h3 className="text-[24px] font-normal mb-[30px]">Actions</h3>
+          <div className="flex space-x-[30px]">
+            {/* <Link href={`/disputes/${dispute.id}/escalate`}> */}
+              <button className="px-[16px] py-[10px] bg-[#8c1c3a] text-white rounded-md hover:bg-[#7a1832]">
+                Escalate Dispute
+              </button>
+            {/* </Link> */}
+            <button className="px-[20px] py-[11px] border border-[#891D33] text-[#891D33] rounded-md hover:bg-gray-50">
+             Contact Support
             </button>
             <button
               onClick={() => router.push("/disputes")}
-              className="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
-            >
-              Contact Support
-            </button>
-            <button
-              onClick={() => router.push(`/disputes/${dispute.id}`)}
-              className="px-4 py-2 border border-gray-300 text-gray-700 rounded-md hover:bg-gray-50"
+              className="px-[20px] py-[11px] border border-[#891D33] text-[#891D33] rounded-md hover:bg-gray-50"
             >
               Close
             </button>
