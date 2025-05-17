@@ -103,7 +103,7 @@ export default function AddNewListingPage() {
     <Layout>
       <div className="p-8 bg-[#fefaf6]">
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-2xl font-bold uppercase">
+          <h2 className="text-2xl font-medium tracking-[0.5rem] uppercase">
             ADD NEW DRESS LISTING
           </h2>
           <BulkImportButton onImport={handleCSVImport} />

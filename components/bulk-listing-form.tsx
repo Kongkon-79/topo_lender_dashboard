@@ -343,390 +343,426 @@ export function BulkListingForm({ onSubmit, onSaveDraft }: BulkFormProps) {
             activeTab === formIndex ? "block" : "hidden"
           }`}
         >
-          {/* Basic Details */}
-          <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-lg font-medium mb-6">Basic Details</h3>
+          <div className="space-y-[30px] bg-[#FFFFFF] p-8 rounded-[15px] border border-[#E6E6E6] shadow-[0px_4px_10px_0px_#0000001A]">
+            <div className="bg-white p-6 rounded-[15px] border border-[#E6E6E6]">
+              <div className="">
+                <h3 className="text-2xl font-normal mb-6">Basic Details</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label className="block text-sm font-medium text-[#891d33] mb-1">
-                  Dress Name <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  value={form.dressName}
-                  onChange={(e) =>
-                    handleInputChange(formIndex, "dressName", e.target.value)
-                  }
-                  className={`w-full p-2 border ${
-                    errors[formIndex]?.dressName
-                      ? "border-red-500"
-                      : "border-gray-300"
-                  } rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]`}
-                  placeholder="Enter Dress name"
-                />
-                {errors[formIndex]?.dressName && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {errors[formIndex].dressName}
-                  </p>
-                )}
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-[#891d33] mb-1">
-                  Brand <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  value={form.brand}
-                  onChange={(e) =>
-                    handleInputChange(formIndex, "brand", e.target.value)
-                  }
-                  className={`w-full p-2 border ${
-                    errors[formIndex]?.brand
-                      ? "border-red-500"
-                      : "border-gray-300"
-                  } rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]`}
-                  placeholder="Enter Brand Name"
-                />
-                {errors[formIndex]?.brand && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {errors[formIndex].brand}
-                  </p>
-                )}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <label className="block text-base font-normal text-[#891d33] mb-3">
+                      Dress Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={form.dressName}
+                      onChange={(e) =>
+                        handleInputChange(
+                          formIndex,
+                          "dressName",
+                          e.target.value
+                        )
+                      }
+                      className={`w-full p-2 border ${
+                        errors[formIndex]?.dressName
+                          ? "border-red-500"
+                          : "border-gray-300"
+                      } rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]`}
+                      placeholder="Enter Dress name"
+                    />
+                    {errors[formIndex]?.dressName && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors[formIndex].dressName}
+                      </p>
+                    )}
+                  </div>
+                  <div>
+                    <label className="block text-base font-normal text-[#891d33] mb-3">
+                      Brand <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={form.brand}
+                      onChange={(e) =>
+                        handleInputChange(formIndex, "brand", e.target.value)
+                      }
+                      className={`w-full p-2 border ${
+                        errors[formIndex]?.brand
+                          ? "border-red-500"
+                          : "border-gray-300"
+                      } rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]`}
+                      placeholder="Enter Brand Name"
+                    />
+                    {errors[formIndex]?.brand && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors[formIndex].brand}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <label className="block text-base font-normal text-[#891d33] mb-3">
+                      Size <span className="text-red-500">*</span>
+                    </label>
+                    <select
+                      value={form.size}
+                      onChange={(e) =>
+                        handleInputChange(formIndex, "size", e.target.value)
+                      }
+                      className={`w-full p-2 border ${
+                        errors[formIndex]?.size
+                          ? "border-red-500"
+                          : "border-gray-300"
+                      } rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]`}
+                    >
+                      <option value="">Select Size</option>
+                      <option value="XS">XS</option>
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                    </select>
+                    {errors[formIndex]?.size && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors[formIndex].size}
+                      </p>
+                    )}
+                  </div>
+                  <div>
+                    <label className="block text-base font-normal text-[#891d33] mb-3">
+                      Color <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      value={form.color}
+                      onChange={(e) =>
+                        handleInputChange(formIndex, "color", e.target.value)
+                      }
+                      className={`w-full p-2 border ${
+                        errors[formIndex]?.color
+                          ? "border-red-500"
+                          : "border-gray-300"
+                      } rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]`}
+                      placeholder="Enter Colour"
+                    />
+                    {errors[formIndex]?.color && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors[formIndex].color}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-base font-normal text-[#891d33] mb-3">
+                      Condition <span className="text-red-500">*</span>
+                    </label>
+                    <select
+                      value={form.condition}
+                      onChange={(e) =>
+                        handleInputChange(
+                          formIndex,
+                          "condition",
+                          e.target.value
+                        )
+                      }
+                      className={`w-full p-2 border ${
+                        errors[formIndex]?.condition
+                          ? "border-red-500"
+                          : "border-gray-300"
+                      } rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]`}
+                    >
+                      <option value="">Select Condition</option>
+                      <option value="New">New</option>
+                      <option value="Excellent">Excellent</option>
+                      <option value="Good">Good</option>
+                      <option value="Fair">Fair</option>
+                    </select>
+                    {errors[formIndex]?.condition && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors[formIndex].condition}
+                      </p>
+                    )}
+                  </div>
+                  <div>
+                    <label className="block text-base font-medium text-[#891d33] mb-3">
+                      Category <span className="text-red-500">*</span>
+                    </label>
+                    <select
+                      value={form.category}
+                      onChange={(e) =>
+                        handleInputChange(formIndex, "category", e.target.value)
+                      }
+                      className={`w-full p-2 border ${
+                        errors[formIndex]?.category
+                          ? "border-red-500"
+                          : "border-gray-300"
+                      } rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]`}
+                    >
+                      <option value="">Select Category</option>
+                      <option value="Formal">Formal</option>
+                      <option value="Cocktail">Cocktail</option>
+                      <option value="Evening">Evening</option>
+                      <option value="Casual">Casual</option>
+                      <option value="Wedding">Wedding</option>
+                    </select>
+                    {errors[formIndex]?.category && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {errors[formIndex].category}
+                      </p>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label className="block text-sm font-medium text-[#891d33] mb-1">
-                  Size <span className="text-red-500">*</span>
+            {/* Location available */}
+            <div className="border border-[#E6E6E6] rounded-[15px]  p-6">
+              <h3 className="text-lg font-medium mb-6">Location available</h3>
+
+              <div className="mb-4">
+                <label className="block text-base font-medium text-[#891d33] mb-1">
+                  Pickup Address
                 </label>
-                <select
-                  value={form.size}
-                  onChange={(e) =>
-                    handleInputChange(formIndex, "size", e.target.value)
-                  }
-                  className={`w-full p-2 border ${
-                    errors[formIndex]?.size
-                      ? "border-red-500"
-                      : "border-gray-300"
-                  } rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]`}
+
+                {form.pickupAddresses.map((address, addressIndex) => (
+                  <div key={addressIndex} className="flex items-center mb-2">
+                    <input
+                      type="text"
+                      value={address}
+                      onChange={(e) =>
+                        updateAddress(formIndex, addressIndex, e.target.value)
+                      }
+                      placeholder="e.g., ### Fashion Ln, Sydney NSW ####"
+                      className="flex-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removeAddress(formIndex, addressIndex)}
+                      className="ml-2 p-2 text-red-500 hover:bg-red-50 rounded-md"
+                      disabled={form.pickupAddresses.length <= 1}
+                    >
+                      <Trash2 className="h-5 w-5" />
+                    </button>
+                  </div>
+                ))}
+
+                <button
+                  type="button"
+                  onClick={() => addAddress(formIndex)}
+                  className="mt-2 flex items-center text-[#891d33] hover:text-[#732032]"
                 >
-                  <option value="">Select Size</option>
-                  <option value="XS">XS</option>
-                  <option value="S">S</option>
-                  <option value="M">M</option>
-                  <option value="L">L</option>
-                  <option value="XL">XL</option>
-                </select>
-                {errors[formIndex]?.size && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {errors[formIndex].size}
-                  </p>
-                )}
+                  <PlusCircle className="h-4 w-4 mr-1" /> Add Another Address
+                </button>
               </div>
-              <div>
+            </div>
+
+            {/* Media */}
+            <div className="bg-white p-6 rounded-[15px] border border-[#E6E6E6] ">
+              <h3 className="text-lg font-medium mb-6">Media</h3>
+
+              <div className="mb-4">
                 <label className="block text-sm font-medium text-[#891d33] mb-1">
-                  Color <span className="text-red-500">*</span>
+                  Images <span className="text-red-500">*</span>
                 </label>
-                <input
-                  type="text"
-                  value={form.color}
-                  onChange={(e) =>
-                    handleInputChange(formIndex, "color", e.target.value)
+
+                {/* Image preview */}
+                {form.images.length > 0 && (
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mb-4">
+                    {form.images.map((image, imageIndex) => (
+                      <div key={imageIndex} className="relative group">
+                        <div className="h-32 w-full rounded-md border border-gray-300 overflow-hidden">
+                          <img
+                            src={
+                              URL.createObjectURL(image) || "/placeholder.svg"
+                            }
+                            alt={`Preview ${imageIndex}`}
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => removeImage(formIndex, imageIndex)}
+                          className="absolute -top-2 -right-2 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                <DragDropFileUpload
+                  onFilesSelected={(files: any) =>
+                    handleImageUpload(formIndex, files)
                   }
-                  className={`w-full p-2 border ${
-                    errors[formIndex]?.color
-                      ? "border-red-500"
-                      : "border-gray-300"
-                  } rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]`}
-                  placeholder="Enter Colour"
+                  multiple={true}
+                  accept="image/*"
+                  maxFiles={10}
+                  maxSizeInMB={5}
                 />
-                {errors[formIndex]?.color && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {errors[formIndex].color}
-                  </p>
-                )}
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-medium text-[#891d33] mb-1">
-                  Condition <span className="text-red-500">*</span>
-                </label>
-                <select
-                  value={form.condition}
-                  onChange={(e) =>
-                    handleInputChange(formIndex, "condition", e.target.value)
-                  }
-                  className={`w-full p-2 border ${
-                    errors[formIndex]?.condition
-                      ? "border-red-500"
-                      : "border-gray-300"
-                  } rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]`}
-                >
-                  <option value="">Select Condition</option>
-                  <option value="New">New</option>
-                  <option value="Excellent">Excellent</option>
-                  <option value="Good">Good</option>
-                  <option value="Fair">Fair</option>
-                </select>
-                {errors[formIndex]?.condition && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {errors[formIndex].condition}
-                  </p>
-                )}
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-[#891d33] mb-1">
-                  Category <span className="text-red-500">*</span>
-                </label>
-                <select
-                  value={form.category}
-                  onChange={(e) =>
-                    handleInputChange(formIndex, "category", e.target.value)
-                  }
-                  className={`w-full p-2 border ${
-                    errors[formIndex]?.category
-                      ? "border-red-500"
-                      : "border-gray-300"
-                  } rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]`}
-                >
-                  <option value="">Select Category</option>
-                  <option value="Formal">Formal</option>
-                  <option value="Cocktail">Cocktail</option>
-                  <option value="Evening">Evening</option>
-                  <option value="Casual">Casual</option>
-                  <option value="Wedding">Wedding</option>
-                </select>
-                {errors[formIndex]?.category && (
-                  <p className="text-red-500 text-xs mt-1">
-                    {errors[formIndex].category}
-                  </p>
-                )}
-              </div>
-            </div>
-          </div>
+            {/* Pricing & Fees */}
+            <div className="bg-white p-6 border border-[#E6E6E6] rounded-[15px] ">
+              <h3 className="text-lg font-medium mb-6">Pricing & Fees</h3>
+              <p className="text-xs text-gray-500 mb-4">
+                Note: The daily price is inclusive of any cleaning fees.
+              </p>
 
-          {/* Location available */}
-          <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-lg font-medium mb-6">Location available</h3>
-
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-[#891d33] mb-1">
-                Pickup Address
-              </label>
-
-              {form.pickupAddresses.map((address, addressIndex) => (
-                <div key={addressIndex} className="flex items-center mb-2">
+              <div className="grid grid-cols-1 space-y-4">
+                <div>
+                  <label className="block text-base font-normal text-[#891d33] mb-3">
+                    Rental Price ($ / 4 days){" "}
+                    <span className="text-red-500">*</span>
+                  </label>
                   <input
                     type="text"
-                    value={address}
+                    value={form.rentalPrice4}
                     onChange={(e) =>
-                      updateAddress(formIndex, addressIndex, e.target.value)
+                      handleInputChange(
+                        formIndex,
+                        "rentalPrice4",
+                        e.target.value
+                      )
                     }
-                    placeholder="e.g., ### Fashion Ln, Sydney NSW ####"
-                    className="flex-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]"
+                    className={`w-full p-2 border ${
+                      errors[formIndex]?.rentalPrice4
+                        ? "border-red-500"
+                        : "border-gray-300"
+                    } rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]`}
+                    placeholder="e.g., 40"
                   />
-                  <button
-                    type="button"
-                    onClick={() => removeAddress(formIndex, addressIndex)}
-                    className="ml-2 p-2 text-red-500 hover:bg-red-50 rounded-md"
-                    disabled={form.pickupAddresses.length <= 1}
-                  >
-                    <Trash2 className="h-5 w-5" />
-                  </button>
+                  {errors[formIndex]?.rentalPrice4 && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {errors[formIndex].rentalPrice4}
+                    </p>
+                  )}
                 </div>
-              ))}
-
-              <button
-                type="button"
-                onClick={() => addAddress(formIndex)}
-                className="mt-2 flex items-center text-[#891d33] hover:text-[#732032]"
-              >
-                <PlusCircle className="h-4 w-4 mr-1" /> Add Another Address
-              </button>
-            </div>
-          </div>
-
-          {/* Media */}
-          <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-lg font-medium mb-6">Media</h3>
-
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-[#891d33] mb-1">
-                Images <span className="text-red-500">*</span>
-              </label>
-
-              {/* Image preview */}
-              {form.images.length > 0 && (
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 mb-4">
-                  {form.images.map((image, imageIndex) => (
-                    <div key={imageIndex} className="relative group">
-                      <div className="h-32 w-full rounded-md border border-gray-300 overflow-hidden">
-                        <img
-                          src={URL.createObjectURL(image) || "/placeholder.svg"}
-                          alt={`Preview ${imageIndex}`}
-                          className="h-full w-full object-cover"
-                        />
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => removeImage(formIndex, imageIndex)}
-                        className="absolute -top-2 -right-2 p-1 bg-red-500 text-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </button>
-                    </div>
-                  ))}
+                <div>
+                  <label className="block text-base font-medium text-[#891d33] mb-3">
+                    Rental Price ($ / 8 days)
+                  </label>
+                  <input
+                    type="text"
+                    value={form.rentalPrice8}
+                    onChange={(e) =>
+                      handleInputChange(
+                        formIndex,
+                        "rentalPrice8",
+                        e.target.value
+                      )
+                    }
+                    placeholder="e.g., 70"
+                    className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]"
+                  />
                 </div>
-              )}
-
-              <DragDropFileUpload
-                onFilesSelected={(files) => handleImageUpload(formIndex, files)}
-                multiple={true}
-                accept="image/*"
-                maxFiles={10}
-                maxSizeInMB={5}
-              />
+              </div>
             </div>
-          </div>
 
-          {/* Pricing & Fees */}
-          <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-lg font-medium mb-6">Pricing & Fees</h3>
-            <p className="text-xs text-gray-500 mb-4">
-              Note: The daily price is inclusive of any cleaning fees.
-            </p>
+            {/* Description & Details */}
+            <div className="bg-white p-6 border border-[#E6E6E6] rounded-[15px]">
+              <h3 className="text-lg font-medium mb-6">
+                Description & Details
+              </h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div>
+              <div className="mb-4">
                 <label className="block text-sm font-medium text-[#891d33] mb-1">
-                  Rental Price ($ / 4 days){" "}
-                  <span className="text-red-500">*</span>
+                  Description <span className="text-red-500">*</span>
                 </label>
-                <input
-                  type="text"
-                  value={form.rentalPrice4}
+                <textarea
+                  value={form.description}
                   onChange={(e) =>
-                    handleInputChange(formIndex, "rentalPrice4", e.target.value)
+                    handleInputChange(formIndex, "description", e.target.value)
                   }
+                  rows={1}
                   className={`w-full p-2 border ${
-                    errors[formIndex]?.rentalPrice4
+                    errors[formIndex]?.description
                       ? "border-red-500"
                       : "border-gray-300"
                   } rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]`}
-                  placeholder="e.g., 40"
-                />
-                {errors[formIndex]?.rentalPrice4 && (
+                  placeholder="e.g., Elegant silk gown with floral embroidery, perfect for formal events."
+                ></textarea>
+                {errors[formIndex]?.description && (
                   <p className="text-red-500 text-xs mt-1">
-                    {errors[formIndex].rentalPrice4}
+                    {errors[formIndex].description}
                   </p>
                 )}
               </div>
-              <div>
+
+              <div className="mb-4">
                 <label className="block text-sm font-medium text-[#891d33] mb-1">
-                  Rental Price ($ / 8 days)
+                  Materials <span className="text-red-500">*</span>
                 </label>
                 <input
                   type="text"
-                  value={form.rentalPrice8}
+                  value={form.materials}
                   onChange={(e) =>
-                    handleInputChange(formIndex, "rentalPrice8", e.target.value)
+                    handleInputChange(formIndex, "materials", e.target.value)
                   }
-                  placeholder="e.g., 70"
-                  className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]"
+                  className={`w-full p-2 border ${
+                    errors[formIndex]?.materials
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  } rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]`}
+                  placeholder="e.g., 100% Silk"
                 />
+                {errors[formIndex]?.materials && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors[formIndex].materials}
+                  </p>
+                )}
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-[#891d33] mb-1">
+                  Care Instructions <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={form.careInstructions}
+                  onChange={(e) =>
+                    handleInputChange(
+                      formIndex,
+                      "careInstructions",
+                      e.target.value
+                    )
+                  }
+                  className={`w-full p-2 border ${
+                    errors[formIndex]?.careInstructions
+                      ? "border-red-500"
+                      : "border-gray-300"
+                  } rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]`}
+                  placeholder="e.g., Dry clean only"
+                />
+                {errors[formIndex]?.careInstructions && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {errors[formIndex].careInstructions}
+                  </p>
+                )}
               </div>
             </div>
-          </div>
-
-          {/* Description & Details */}
-          <div className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-lg font-medium mb-6">Description & Details</h3>
-
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-[#891d33] mb-1">
-                Description <span className="text-red-500">*</span>
-              </label>
-              <textarea
-                value={form.description}
-                onChange={(e) =>
-                  handleInputChange(formIndex, "description", e.target.value)
-                }
-                rows={4}
-                className={`w-full p-2 border ${
-                  errors[formIndex]?.description
-                    ? "border-red-500"
-                    : "border-gray-300"
-                } rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]`}
-                placeholder="e.g., Elegant silk gown with floral embroidery, perfect for formal events."
-              ></textarea>
-              {errors[formIndex]?.description && (
-                <p className="text-red-500 text-xs mt-1">
-                  {errors[formIndex].description}
-                </p>
-              )}
-            </div>
-
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-[#891d33] mb-1">
-                Materials <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                value={form.materials}
-                onChange={(e) =>
-                  handleInputChange(formIndex, "materials", e.target.value)
-                }
-                className={`w-full p-2 border ${
-                  errors[formIndex]?.materials
-                    ? "border-red-500"
-                    : "border-gray-300"
-                } rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]`}
-                placeholder="e.g., 100% Silk"
-              />
-              {errors[formIndex]?.materials && (
-                <p className="text-red-500 text-xs mt-1">
-                  {errors[formIndex].materials}
-                </p>
-              )}
-            </div>
-
             <div>
-              <label className="block text-sm font-medium text-[#891d33] mb-1">
-                Care Instructions <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                value={form.careInstructions}
-                onChange={(e) =>
-                  handleInputChange(
-                    formIndex,
-                    "careInstructions",
-                    e.target.value
-                  )
-                }
-                className={`w-full p-2 border ${
-                  errors[formIndex]?.careInstructions
-                    ? "border-red-500"
-                    : "border-gray-300"
-                } rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]`}
-                placeholder="e.g., Dry clean only"
-              />
-              {errors[formIndex]?.careInstructions && (
-                <p className="text-red-500 text-xs mt-1">
-                  {errors[formIndex].careInstructions}
-                </p>
-              )}
+              <div className="flex flex-wrap gap-4">
+                <button className="px-4 py-2 border border-gray-300  rounded-[8px] bg-[#891D33] text-white">
+                  Add New Form
+                </button>
+                <button className="px-4 py-2 border rounded-md border-[#8c1c3a] text-[#8c1c3a] hover:bg-[#8c1c3a]">
+                  Duplicate Form
+                </button>
+              </div>
             </div>
           </div>
         </div>
       ))}
 
       {/* Actions */}
-      <div className="bg-white p-6 rounded-lg shadow-sm">
+      <div className="bg-white p-6 rounded-[15px] shadow-[0px_4px_10px_0px_#0000001A]">
+        <h3 className="text-2xl font-normal mb-4">Actions</h3>
         <div className="flex flex-wrap gap-4">
           <button
             type="button"

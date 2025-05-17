@@ -69,12 +69,12 @@ export function DragDropUpload({
           readOnly
           value={fileName}
           placeholder="File name"
-          className="flex-1 p-2 border border-gray-300 rounded-l-md focus:outline-none"
+          className="flex-1 p-3 border relative border-gray-300 rounded-md focus:outline-none"
         />
         <button
           type="button"
           onClick={handleButtonClick}
-          className="px-4 py-2 bg-[#891d33] text-white rounded-r-md hover:bg-[#732032]"
+          className=" bg-[#891d33] absolute right-[3.5%] px-3 py-1.5 text-white rounded-md hover:bg-[#732032]"
         >
           Drag and Drop
         </button>
@@ -84,7 +84,7 @@ export function DragDropUpload({
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        className={`mt-2 border-2 border-dashed rounded-md p-6 text-center transition-colors ${
+        className={`mt-2 rounded-md text-center transition-colors ${
           isDragging ? "border-[#891d33] bg-[#891d33]/5" : "border-gray-300"
         }`}
       >
@@ -96,10 +96,10 @@ export function DragDropUpload({
           multiple={multiple}
           onChange={handleFileInputChange}
         />
-        <Upload className="mx-auto h-10 w-10 text-gray-400" />
-        <p className="mt-2 text-sm text-gray-500">
+        {/* <Upload className="mx-auto h-10 w-10 text-gray-400" /> */}
+        {/* <p className="mt-2 text-sm text-gray-500">
           Drag and drop your files here or click to browse
-        </p>
+        </p> */}
       </div>
     </div>
   );

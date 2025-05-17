@@ -1,12 +1,14 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Layout } from "@/components/layout"
-import { StatCard } from "@/components/ui/stat-card"
-import { SearchInput } from "@/components/ui/search-input"
-import { SelectDropdown } from "@/components/ui/select-dropdown"
-import { Pagination } from "@/components/ui/pagination"
-import { X, Download } from "lucide-react"
+import { useState } from "react";
+import { Layout } from "@/components/layout";
+import { StatCard } from "@/components/ui/stat-card";
+import { SearchInput } from "@/components/ui/search-input";
+import { SelectDropdown } from "@/components/ui/select-dropdown";
+import { Pagination } from "@/components/ui/pagination";
+import { X, Download } from "lucide-react";
+import modalImage from "../../public/mIcon.png";
+import Image from "next/image";
 
 // Sample payments data
 const paymentsData = [
@@ -31,7 +33,7 @@ const paymentsData = [
     amount: "$14.81",
     status: "Pending",
   },
-]
+];
 
 // Payment details data
 const paymentDetailsData = [
@@ -53,11 +55,11 @@ const paymentDetailsData = [
     rentalDates: "May ## - ##, 2025",
     amount: "$14.81",
   },
-]
+];
 
 export default function PaymentsPage() {
-  const [currentPage, setCurrentPage] = useState(1)
-  const [showPayoutDetails, setShowPayoutDetails] = useState(false)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [showPayoutDetails, setShowPayoutDetails] = useState(false);
 
   return (
     <Layout>
@@ -77,12 +79,16 @@ export default function PaymentsPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          <StatCard title="Total Revenue" value="$#,###" className="bg-[#8c1c3a] text-white" />
+          <StatCard
+            title="Total Revenue"
+            value="$#,###"
+            className="bg-[#8c1c3a] text-white"
+          />
           <StatCard title="Subscription" value="Subscription Plan" />
           <StatCard title="Next Payout" value="$### on May 28, 2025" />
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm mb-8">
+        <div className="bg-white p-6 rounded-[15px] shadow-[0px_4px_10px_0px_#0000001A] mb-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
             <SearchInput placeholder="Search ......" />
             <SelectDropdown label="Type Filter" value="Select Type" />
@@ -91,22 +97,34 @@ export default function PaymentsPage() {
           </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm">
+        <div className="bg-white p-6 rounded-[15px] shadow-[0px_4px_10px_0px_#0000001A]">
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="border-b">
-                  <th className="text-left py-3 font-medium">Date</th>
-                  <th className="text-left py-3 font-medium">Payout ID</th>
-                  <th className="text-left py-3 font-medium">Dress Name</th>
-                  <th className="text-left py-3 font-medium">Amount</th>
-                  <th className="text-left py-3 font-medium">Status</th>
-                  <th className="text-left py-3 font-medium">Action</th>
+                <tr className="">
+                  <th className="text-left text-[#6B7280] py-3 font-medium">
+                    Date
+                  </th>
+                  <th className="text-left py-3 text-[#6B7280] font-medium">
+                    Payout ID
+                  </th>
+                  <th className="text-left py-3 text-[#6B7280] font-medium">
+                    Dress Name
+                  </th>
+                  <th className="text-left py-3 text-[#6B7280] font-medium">
+                    Amount
+                  </th>
+                  <th className="text-left py-3 text-[#6B7280] font-medium">
+                    Status
+                  </th>
+                  <th className="text-left py-3 text-[#6B7280] font-medium">
+                    Action
+                  </th>
                 </tr>
               </thead>
               <tbody>
                 {paymentsData.map((payment, index) => (
-                  <tr key={index} className="border-b">
+                  <tr key={index} className="">
                     <td className="py-4">{payment.date}</td>
                     <td className="py-4">{payment.payoutId}</td>
                     <td className="py-4">{payment.dressName}</td>
@@ -114,7 +132,9 @@ export default function PaymentsPage() {
                     <td className="py-4">
                       <span
                         className={`px-2 py-1 rounded-full text-xs ${
-                          payment.status === "Paid" ? "bg-green-100 text-green-800" : "bg-yellow-100 text-yellow-800"
+                          payment.status === "Paid"
+                            ? "bg-green-100 text-green-800"
+                            : "bg-yellow-100 text-yellow-800"
                         }`}
                       >
                         {payment.status}
@@ -151,43 +171,63 @@ export default function PaymentsPage() {
           <div className="w-full max-w-2xl bg-white rounded-lg shadow-lg overflow-hidden">
             <div className="p-6">
               <div className="flex justify-between items-start mb-6">
-                <div>
-                  <div className="flex items-center justify-center mb-4">
-                    <div className="text-[#8c1c3a] text-4xl font-serif italic">𝓜</div>
+                <div className="w-full">
+                  <div className="flex justify-center mb-2">
+                    <Image
+                      src={modalImage}
+                      alt="Logo"
+                      width={220}
+                      height={220}
+                      className="w-[70px] h-[60px] object-cover"
+                    />
                   </div>
-                  <h2 className="text-xl font-semibold">Payout Details</h2>
+                  <h2 className="text-2xl font-normal">Payout Details</h2>
                   <div className="mt-4 space-y-1">
                     <p className="text-sm">Month: April 2025</p>
                     <p className="text-sm">Revenue Earned: $800</p>
                     <p className="text-sm">Payout Status: Completed</p>
                   </div>
                 </div>
-                <button onClick={() => setShowPayoutDetails(false)} className="text-gray-400 hover:text-gray-500">
+
+                <button
+                  onClick={() => setShowPayoutDetails(false)}
+                  className="text-gray-400 hover:text-gray-500"
+                >
                   <X className="h-6 w-6" />
                 </button>
               </div>
 
               <div className="overflow-x-auto mb-6">
-                <table className="w-full text-sm">
-                  <thead>
-                    <tr className="border-b">
-                      <th className="text-left py-3 font-medium text-sm">Booking ID</th>
-                      <th className="text-left py-3 font-medium text-sm">Customer ID</th>
-                      <th className="text-left py-3 font-medium text-sm">Rental Dates</th>
-                      <th className="text-left py-3 font-medium text-sm">Amount</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {paymentDetailsData.map((item, index) => (
-                      <tr key={index} className="border-b">
-                        <td className="py-4">{item.bookingId}</td>
-                        <td className="py-4">{item.customerId}</td>
-                        <td className="py-4">{item.rentalDates}</td>
-                        <td className="py-4">{item.amount}</td>
+                <div className="border border-gray-200 rounded-[8px] overflow-hidden">
+                  <table className="w-full text-sm border-collapse">
+                    <thead className="bg-gray-50">
+                      <tr className="border-b border-gray-200">
+                        <th className="text-left px-4 py-3 font-medium text-sm">
+                          Booking ID
+                        </th>
+                        <th className="text-left px-4 py-3 font-medium text-sm">
+                          Customer ID
+                        </th>
+                        <th className="text-left px-4 py-3 font-medium text-sm">
+                          Rental Dates
+                        </th>
+                        <th className="text-left px-4 py-3 font-medium text-sm">
+                          Amount
+                        </th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {paymentDetailsData.map((item, index) => (
+                        <tr key={index} className=" border-gray-200">
+                          <td className="px-4 py-4">{item.bookingId}</td>
+                          <td className="px-4 py-4">{item.customerId}</td>
+                          <td className="px-4 py-4">{item.rentalDates}</td>
+                          <td className="px-4 py-4">{item.amount}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
 
               <div className="space-y-2 mb-6">
@@ -195,19 +235,21 @@ export default function PaymentsPage() {
                 <p className="text-sm">Transaction ID: TXN-123456</p>
               </div>
 
-              <div className="flex justify-end space-x-4">
+              <div className="flex justify-center space-x-4">
                 <button
                   onClick={() => setShowPayoutDetails(false)}
                   className="px-4 py-2 border border-gray-300 rounded-md text-sm"
                 >
                   Close
                 </button>
-                <button className="px-4 py-2 bg-[#8c1c3a] text-white rounded-md text-sm">Download Receipt</button>
+                <button className="px-4 py-2 bg-[#8c1c3a] text-white rounded-md text-sm">
+                  Download Receipt
+                </button>
               </div>
             </div>
           </div>
         </div>
       )}
     </Layout>
-  )
+  );
 }

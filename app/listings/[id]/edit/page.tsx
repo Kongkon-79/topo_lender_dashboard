@@ -7,7 +7,7 @@ import { Layout } from "@/components/layout";
 import { useRouter } from "next/navigation";
 import { getDressById, updateDress } from "@/services/listings-service";
 import type { Dress, DressFormData } from "@/types/listings";
-import { Trash2, Plus } from "lucide-react";
+import { Trash2, Plus, Trash } from "lucide-react";
 import { DragDropUpload } from "@/components/drag-drop-upload";
 import { SelectDropdown } from "@/components/ui/select-dropdown";
 
@@ -166,16 +166,18 @@ export default function EditListingPage({
   return (
     <Layout>
       <div className="p-8 bg-[#fefaf6]">
-        <h2 className="text-2xl font-bold mb-8">EDIT DRESS LISTING</h2>
+        <h2 className="text-[32px] font-normal tracking-[0.5rem] mb-8">
+          EDIT DRESS LISTING
+        </h2>
 
         <form onSubmit={handleSubmit}>
           {/* Basic Details */}
-          <div className="bg-white p-6 rounded-lg shadow-sm mb-8">
-            <h3 className="text-lg font-medium mb-6">Basic Details</h3>
+          <div className="bg-white p-6 rounded-[15px] mb-8 shadow-[0px_4px_10px_0px_#0000001A]">
+            <h3 className="text-2xl font-normal mb-6">Basic Details</h3>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
-                <label className="block text-sm font-medium text-[#891d33] mb-1">
+                <label className="block text-[18px] font-medium text-[#891d33] mb-3">
                   Dress Name <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -188,7 +190,7 @@ export default function EditListingPage({
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[#891d33] mb-1">
+                <label className="block font-medium text-[#891d33] text-[18px] mb-3">
                   Brand <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -204,7 +206,7 @@ export default function EditListingPage({
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
-                <label className="block text-sm font-medium text-[#891d33] mb-1">
+                <label className="block text-[18px] font-medium text-[#891d33] mb-3">
                   Size <span className="text-red-500">*</span>
                 </label>
                 <SelectDropdown
@@ -212,11 +214,11 @@ export default function EditListingPage({
                   options={["XS", "S", "M", "L", "XL"]}
                   value={formData.size}
                   onChange={(value) => handleSelectChange("size", value)}
-                  placeholder="Select Size"
+                  placeholder="Select Size "
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[#891d33] mb-1">
+                <label className="block text-[18px] font-medium text-[#891d33] mb-3">
                   Color <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -232,7 +234,7 @@ export default function EditListingPage({
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium text-[#891d33] mb-1">
+                <label className="block text-[18px] font-medium text-[#891d33] mb-3">
                   Condition <span className="text-red-500">*</span>
                 </label>
                 <SelectDropdown
@@ -240,11 +242,11 @@ export default function EditListingPage({
                   options={["New", "Excellent", "Good", "Fair"]}
                   value={formData.condition}
                   onChange={(value) => handleSelectChange("condition", value)}
-                  placeholder="Select Condition"
+                  placeholder="Select Condition "
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[#891d33] mb-1">
+                <label className="block text-[18px] font-medium text-[#891d33] mb-3">
                   Category <span className="text-red-500">*</span>
                 </label>
                 <SelectDropdown
@@ -258,69 +260,92 @@ export default function EditListingPage({
                   ]}
                   value={formData.category}
                   onChange={(value) => handleSelectChange("category", value)}
-                  placeholder="Select Category"
+                  placeholder="Select Category "
                 />
               </div>
             </div>
           </div>
 
           {/* Location available */}
-          <div className="bg-white p-6 rounded-lg shadow-sm mb-8">
-            <h3 className="text-lg font-medium mb-6">Location available</h3>
+          <div className="bg-white p-6 rounded-[15px] shadow-sm mb-8">
+            <h3 className="text-2xl font-normal mb-6">Location available</h3>
 
             <div className="mb-4">
-              <label className="block text-sm font-medium text-[#891d33] mb-1">
+              <label className="block text-base font-medium text-[#891d33] mb-3">
                 Pickup Address
               </label>
 
               {pickupAddresses.map((address, index) => (
-                <div key={index} className="flex items-center mb-2">
-                  <input
-                    type="text"
-                    value={address}
-                    onChange={(e) => updatePickupAddress(index, e.target.value)}
-                    placeholder="e.g., ### Fashion Ln, Sydney NSW ####"
-                    className="flex-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => removePickupAddress(index)}
-                    className="ml-2 p-2 text-white bg-[#891d33] rounded-md hover:bg-[#732032]"
-                  >
-                    <Trash2 className="h-5 w-5" />
-                  </button>
+                <div key={index} className="mb-2">
+                  <div className="flex items-center ">
+                    <input
+                      type="text"
+                      value={address}
+                      onChange={(e) =>
+                        updatePickupAddress(index, e.target.value)
+                      }
+                      placeholder="e.g., ### Fashion Ln, Sydney NSW ####"
+                      className="flex-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removePickupAddress(index)}
+                      className="ml-2 p-2 text-white bg-[#891d33] rounded-md hover:bg-[#732032]"
+                    >
+                      <Trash className="h-5 w-5" />
+                    </button>
+                  </div>
+                  <div className="flex items-center mt-3">
+                    <input
+                      type="text"
+                      value={address}
+                      onChange={(e) =>
+                        updatePickupAddress(index, e.target.value)
+                      }
+                      placeholder="e.g., ### Fashion Ln, Sydney NSW ####"
+                      className="flex-1 p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]"
+                    />
+                    <button
+                      type="button"
+                      onClick={() => removePickupAddress(index)}
+                      className="ml-2 p-2 text-white bg-[#891d33] rounded-md hover:bg-[#732032]"
+                    >
+                      <Plus   className="h-5 w-5" />
+                    </button>
+                  </div>
                 </div>
               ))}
 
-              <button
+              {/* <button
                 type="button"
                 onClick={addPickupAddress}
                 className="mt-2 flex items-center justify-center p-2 text-white bg-[#891d33] rounded-md hover:bg-[#732032]"
               >
                 <Plus className="h-5 w-5" />
-              </button>
+              </button> */}
             </div>
           </div>
 
           {/* Media */}
-          <div className="bg-white p-6 rounded-lg shadow-sm mb-8">
-            <h3 className="text-lg font-medium mb-6">Media</h3>
+          <div className="bg-white p-6 rounded-[15px] mb-8 shadow-[0px_4px_10px_0px_#0000001A]">
+            <h3 className="text-2xl font-normal mb-6">Media</h3>
 
             <div className="mb-4">
-              <label className="block text-sm font-medium text-[#891d33] mb-1">
+              <label className="block text-base font-medium text-[#891d33] mb-3">
                 Images <span className="text-red-500">*</span>
               </label>
+              
               <DragDropUpload onFileChange={handleFileChange} />
             </div>
           </div>
 
           {/* Pricing & Fees */}
-          <div className="bg-white p-6 rounded-lg shadow-sm mb-8">
-            <h3 className="text-lg font-medium mb-6">Pricing & Fees</h3>
+          <div className="bg-white p-6 rounded-[15px] shadow-[0px_4px_10px_0px_#0000001A] mb-8">
+            <h3 className="text-2xl font-normal mb-6">Pricing & Fees</h3>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 gap-6 mb-6">
               <div>
-                <label className="block text-sm font-medium text-[#891d33] mb-1">
+                <label className="block text-base font-normal text-[#891d33] mb-3">
                   Rental Price ($ / 4 days){" "}
                   <span className="text-red-500">*</span>
                 </label>
@@ -334,7 +359,7 @@ export default function EditListingPage({
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-[#891d33] mb-1">
+                <label className="block text-base font-normal text-[#891d33] mb-3">
                   Rental Price ($ / 8 days)
                 </label>
                 <input
@@ -347,11 +372,11 @@ export default function EditListingPage({
           </div>
 
           {/* Description & Details */}
-          <div className="bg-white p-6 rounded-lg shadow-sm mb-8">
-            <h3 className="text-lg font-medium mb-6">Description & Details</h3>
+          <div className="bg-white p-6 rounded-[15px] shadow-[0px_4px_10px_0px_#0000001A] mb-8">
+            <h3 className="text-2xl font-normal mb-6">Description & Details</h3>
 
             <div className="mb-4">
-              <label className="block text-sm font-medium text-[#891d33] mb-1">
+              <label className="block text-base font-normal text-[#891d33] mb-3">
                 Description <span className="text-red-500">*</span>
               </label>
               <textarea
@@ -359,13 +384,13 @@ export default function EditListingPage({
                 value={formData.description}
                 onChange={handleInputChange}
                 placeholder="e.g., ##"
-                rows={4}
+                rows={1}
                 className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#891d33]"
               ></textarea>
             </div>
 
             <div className="mb-4">
-              <label className="block text-sm font-medium text-[#891d33] mb-1">
+              <label className="block text-base font-normal text-[#891d33] mb-3">
                 Materials <span className="text-red-500">*</span>
               </label>
               <input
@@ -379,7 +404,7 @@ export default function EditListingPage({
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[#891d33] mb-1">
+              <label className="block text-base font-normal text-[#891d33] mb-3">
                 Care Instructions <span className="text-red-500">*</span>
               </label>
               <input
@@ -394,7 +419,7 @@ export default function EditListingPage({
           </div>
 
           {/* Actions */}
-          <div className="bg-white p-6 rounded-lg shadow-sm mb-8">
+          <div className="bg-white p-6 rounded-[15px] shadow-[0px_4px_10px_0px_#0000001A] mb-8">
             <h3 className="text-lg font-medium mb-6">Actions</h3>
 
             <div>
