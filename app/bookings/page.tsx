@@ -138,7 +138,7 @@ export default function BookingsPage() {
 
   const itemsPerPage = 3;
 
-  // Convert bookings to calendar events
+  // Convert bookings to calendar events for the calendar
   const calendarEvents = useMemo(() => {
     return bookings.map((booking) => {
       // Parse the rental period
