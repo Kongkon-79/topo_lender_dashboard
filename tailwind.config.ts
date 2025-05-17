@@ -45,6 +45,10 @@ const config: Config = {
           foreground: "hsl(var(--card-foreground))",
         },
       },
+       fontFamily: {
+        poppins: ['var(--font-poppins)', 'sans-serif'],
+        avenir: ["var(--font-avenir)", "sans-serif"],
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
