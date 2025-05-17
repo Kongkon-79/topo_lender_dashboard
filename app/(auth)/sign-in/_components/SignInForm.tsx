@@ -54,7 +54,7 @@ export default function SignInForm() {
       <AuthHeader
         title1="Welcome"
         title2="Back"
-        desc="Sign in to your account"
+        desc="Please enter your credentials to continue"
       />
 
       {/* Form */}

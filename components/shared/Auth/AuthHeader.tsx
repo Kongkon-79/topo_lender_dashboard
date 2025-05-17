@@ -16,11 +16,11 @@ const AuthHeader = ({ title1, title2, desc }: Props) => {
       </div>
 
       {/* Heading */}
-      <div className="text-center">
-        <h1 className="font-avenir text-2xl md:text-3xl lg:text-4xl font-extrabold text-black leading-[130%] tracking-[1.08px] mb-2">
+      <div className="text-center pb-[12px] md:pb-[15px]">
+        <h1 className="font-avenir text-2xl md:text-3xl lg:text-[32px] font-extrabold text-black leading-[130%] tracking-[1.08px] mb-2">
           {title1} <span className="text-[#9b2c3e]">{title2}</span>
         </h1>
-        <p className="font-avenir text-base font-normal text-black leading-[150%] tracking-[0%] pb-[12px] md:pb-[15px]">
+        <p className="font-avenirNormal text-base font-normal text-black leading-[150%] tracking-[0%] ">
           {desc}
         </p>
       </div>

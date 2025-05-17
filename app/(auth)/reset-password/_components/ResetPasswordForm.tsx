@@ -71,7 +71,7 @@ export default function ResetPasswordForm() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="w-full space-y-4"
+          className="w-full space-y-4 p-4"
         >
           {/* New Password Field */}
           <FormField
