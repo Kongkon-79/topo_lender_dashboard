@@ -11,27 +11,26 @@ import {
 import { Pagination } from "@/components/ui/pagination";
 import { BookingModal } from "@/components/booking-modal";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
 import Link from "next/link";
 import { SkeletonTable } from "@/components/ui/skeletons";
 
 // Sample bookings data
 const allBookingsData = [
   {
-    id: "BK10001",
-    dressId: "DRESS001",
+    id: "#####",
+    dressId: "#####",
     dressName: "Emerald Evening Gown",
     customer: "Emma Thompson",
     customerId: "CUST001",
     price: "$89.99",
     rentalPeriod: "May 12 - May 15, 2025",
     deliveryType: "Pickup",
-    status: "Confirmed",
+    status: "Picked up",
     bookingDate: "2025-04-01",
   },
   {
-    id: "BK10002",
-    dressId: "DRESS002",
+    id: "#####",
+    dressId: "#####",
     dressName: "Sunshine Maxi Dress",
     customer: "Olivia Wilson",
     customerId: "CUST002",
@@ -42,8 +41,8 @@ const allBookingsData = [
     bookingDate: "2025-04-05",
   },
   {
-    id: "BK10003",
-    dressId: "DRESS003",
+    id: "#####",
+    dressId: "#####",
     dressName: "Classic Black Cocktail",
     customer: "Sophia Martinez",
     customerId: "CUST003",
@@ -54,28 +53,40 @@ const allBookingsData = [
     bookingDate: "2025-04-10",
   },
   {
-    id: "BK10004",
-    dressId: "DRESS004",
-    dressName: "Ruby Gala Gown",
-    customer: "Isabella Johnson",
-    customerId: "CUST004",
-    price: "$120.00",
-    rentalPeriod: "June 2 - June 5, 2025",
-    deliveryType: "Shipping",
-    status: "Pending",
-    bookingDate: "2025-04-15",
+    id: "#####",
+    dressId: "#####",
+    dressName: "Emerald Evening Gown",
+    customer: "Emma Thompson",
+    customerId: "CUST001",
+    price: "$89.99",
+    rentalPeriod: "May 2 - May 5, 2025",
+    deliveryType: "Pickup",
+    status: "Picked up",
+    bookingDate: "2025-04-01",
   },
   {
-    id: "BK10005",
-    dressId: "DRESS005",
-    dressName: "Midnight Formal Dress",
-    customer: "Mia Brown",
-    customerId: "CUST005",
-    price: "$95.25",
-    rentalPeriod: "June 8 - June 11, 2025",
+    id: "#####",
+    dressId: "#####",
+    dressName: "Sunshine Maxi Dress",
+    customer: "Olivia Wilson",
+    customerId: "CUST002",
+    price: "$65.70",
+    rentalPeriod: "May 8 - May 10, 2025",
+    deliveryType: "Shipping",
+    status: "Shipped",
+    bookingDate: "2025-04-05",
+  },
+  {
+    id: "#####",
+    dressId: "#####",
+    dressName: "Classic Black Cocktail",
+    customer: "Sophia Martinez",
+    customerId: "CUST003",
+    price: "$74.50",
+    rentalPeriod: "May 11 - May 12, 2025",
     deliveryType: "Pickup",
-    status: "Confirmed",
-    bookingDate: "2025-04-20",
+    status: "Completed",
+    bookingDate: "2025-04-10",
   },
 ];
 
@@ -121,9 +132,9 @@ const dressesData = [
 export default function BookingsPage() {
   // State for filters and pagination
   const [searchTerm, setSearchTerm] = useState("");
-  const [deliveryTypeFilter, setDeliveryTypeFilter] = useState("All");
-  const [statusFilter, setStatusFilter] = useState("All");
-  const [dateFilter, setDateFilter] = useState("All");
+  const [deliveryTypeFilter, setDeliveryTypeFilter] = useState("Delivery Type");
+  const [statusFilter, setStatusFilter] = useState("Status");
+  const [dateFilter, setDateFilter] = useState("Date");
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -380,11 +391,11 @@ export default function BookingsPage() {
   const getStatusClass = (status: string) => {
     switch (status.toLowerCase()) {
       case "confirmed":
-        return "bg-blue-100 text-blue-800";
+        return "bg-[#F7E39F] text-[#6F6648]";
       case "shipped":
-        return "bg-purple-100 text-purple-800";
+        return "bg-[#9FCCF7] text-[#2D26FD]";
       case "completed":
-        return "bg-green-100 text-green-800";
+        return "bg-[#B3E9C9] text-[#033618]";
       case "pending":
         return "bg-yellow-100 text-yellow-800";
       default:
@@ -419,45 +430,52 @@ export default function BookingsPage() {
 
   return (
     <Layout>
-      <div className="p-8">
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="text-2xl font-bold uppercase">Bookings</h2>
+      <div className="pt-[40px] md:pt-[60px] lg:pt-[81px] px-[40px] md:px-[60px] lg:px-[80px] pb-[50px] md:pb-[75px] lg:pb-[100px]">
+        <div className="flex justify-between items-center mb-[60px]">
+          <h2 className="font-avenirNormal text-2xl md:text-[28px] lg:text-[32px] text-black font-normal tracking-[0.2em] leading-[36px] md:leading-[42px] lg:leading-[48px] uppercase">
+            Bookings
+          </h2>
           <Button
-            className="flex items-center"
+            className="font-avenirNormal h-[51px] text-base font-light text-white leading-[120%] tracking-[0%] bg-[#891D33] rounded-[8px] py-4 px-8 "
             onClick={() => setShowBookingModal(true)}
           >
-            <Plus className="mr-2 h-4 w-4" /> Manual Booking
+            Manual Booking
           </Button>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+        <div className="bg-white py-[25px] px-[30px] rounded-[15px] shadow-sm mb-[60px]">
+          <div className="flex items-center gap-[30px]">
             <SearchInput
-              placeholder="Search by ID, dress, customer..."
+              placeholder="Search ......"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
+              className="font-avenirNormal w-[264px] bg-white border border-[#E6E6E6] rounded-[8px] text-base font-normal leading-[120%] tracking-[0%] text-[#595959] placeholder:text-[#595959] placeholder:font-normal placeholder:leading-[120%] placeholder:tracking-[0%]"
             />
             <SelectDropdown
-              label="Delivery Type"
+              label="Delivery Type" // this will act as the placeholder
               value={deliveryTypeFilter}
               options={["All", "Pickup", "Shipping"]}
               onChange={setDeliveryTypeFilter}
+              className="font-avenirNormal w-[200px] bg-white border border-[#E6E6E6] rounded-[8px] text-base font-normal leading-[120%] tracking-[0%] text-[#595959] placeholder:text-[#595959] placeholder:font-normal placeholder:leading-[120%] placeholder:tracking-[0%]"
             />
+
             <SelectDropdown
               label="Status"
               value={statusFilter}
               options={["All", "Pending", "Confirmed", "Shipped", "Completed"]}
               onChange={setStatusFilter}
+              className="font-avenirNormal w-[200px] bg-white border border-[#E6E6E6] rounded-[8px] text-base font-normal leading-[120%] tracking-[0%] text-[#595959] placeholder:text-[#595959] placeholder:font-normal placeholder:leading-[120%] placeholder:tracking-[0%]"
             />
             <SelectDropdown
               label="Date"
               value={dateFilter}
               options={["All", "This Month", "Next Month", "Custom"]}
               onChange={setDateFilter}
+              className="font-avenirNormal w-[200px] bg-white border border-[#E6E6E6] rounded-[8px] text-base font-normal leading-[120%] tracking-[0%] text-[#595959] placeholder:text-[#595959] placeholder:font-normal placeholder:leading-[120%] placeholder:tracking-[0%]"
             />
           </div>
 
-          {filteredBookings.length === 0 && !isLoading && (
+          {/* {filteredBookings.length === 0 && !isLoading && (
             <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4 text-center">
               <p className="text-yellow-800">
                 No bookings match your filters. Try adjusting your search
@@ -470,12 +488,12 @@ export default function BookingsPage() {
                 Clear all filters
               </button>
             </div>
-          )}
+          )} */}
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm mb-8">
+        <div className="bg-white p-6 rounded-lg shadow-sm">
           <div className="mb-6">
-            <h3 className="text-lg font-medium mb-4">Calendar</h3>
+            <h3 className="font-avenirNormal text-2xl font-normal text-black tracking-[15%] leading-[28px]">Calendar</h3>
             {isLoading ? (
               <div className="h-96 bg-gray-100 animate-pulse rounded-lg"></div>
             ) : (
@@ -490,7 +508,7 @@ export default function BookingsPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-1 gap-8 mb-8">
+        {/* <div className="grid grid-cols-1 lg:grid-cols-1 gap-8 mb-8">
           <div className="bg-white p-6 rounded-lg shadow-sm">
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-lg font-medium">Recent Bookings</h3>
@@ -540,9 +558,9 @@ export default function BookingsPage() {
               </div>
             )}
           </div>
-        </div>
+        </div> */}
 
-        <div className="bg-white p-6 rounded-lg shadow-sm">
+        <div className="bg-white rounded-lg shadow-sm mt-[60px] ">
           {isLoading ? (
             <SkeletonTable rows={3} columns={8} />
           ) : (
@@ -550,103 +568,73 @@ export default function BookingsPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="border-b">
+                    <tr className="">
                       <th
-                        className="text-left py-3 font-medium cursor-pointer hover:text-primary"
-                        onClick={() => handleSort("id")}
+                        className="font-avenirNormal text-sm font-normal text-[#6B7280] leading-[120%] tracking-[0%] px-[47.5px] py-[21px]"
+                        // onClick={() => handleSort("id")}
                       >
                         Order ID
-                        {sortField === "id" && (
+                        {/* {sortField === "id" && (
                           <span className="ml-1">
                             {sortDirection === "asc" ? "↑" : "↓"}
                           </span>
-                        )}
+                        )} */}
                       </th>
                       <th
-                        className="text-left py-3 font-medium cursor-pointer hover:text-primary"
-                        onClick={() => handleSort("dressId")}
+                        className="font-avenirNormal text-sm font-normal text-[#6B7280] leading-[120%] tracking-[0%] px-[48.5px] py-[21px]"
                       >
                         Dress ID
-                        {sortField === "dressId" && (
-                          <span className="ml-1">
-                            {sortDirection === "asc" ? "↑" : "↓"}
-                          </span>
-                        )}
                       </th>
                       <th
-                        className="text-left py-3 font-medium cursor-pointer hover:text-primary"
-                        onClick={() => handleSort("customer")}
+                        className="font-avenirNormal text-sm font-normal text-[#6B7280] leading-[120%] tracking-[0%] px-[73.75px] py-[21px]"
                       >
                         Customer
-                        {sortField === "customer" && (
-                          <span className="ml-1">
-                            {sortDirection === "asc" ? "↑" : "↓"}
-                          </span>
-                        )}
                       </th>
                       <th
-                        className="text-left py-3 font-medium cursor-pointer hover:text-primary"
-                        onClick={() => handleSort("price")}
+                        className="font-avenirNormal text-sm font-normal text-[#6B7280] leading-[120%] tracking-[0%] px-[47px] py-[21px]"
                       >
                         Price
-                        {sortField === "price" && (
-                          <span className="ml-1">
-                            {sortDirection === "asc" ? "↑" : "↓"}
-                          </span>
-                        )}
                       </th>
-                      <th className="text-left py-3 font-medium">
+                      <th className="font-avenirNormal text-sm font-normal text-[#6B7280] leading-[120%] tracking-[0%] px-[47.25px] py-[21px]">
                         Rental Period
                       </th>
                       <th
-                        className="text-left py-3 font-medium cursor-pointer hover:text-primary"
-                        onClick={() => handleSort("deliveryType")}
+                        className="font-avenirNormal text-sm font-normal text-[#6B7280] leading-[120%] tracking-[0%] px-[47.25px] py-[21px]"
                       >
                         Delivery Type
-                        {sortField === "deliveryType" && (
-                          <span className="ml-1">
-                            {sortDirection === "asc" ? "↑" : "↓"}
-                          </span>
-                        )}
                       </th>
                       <th
-                        className="text-left py-3 font-medium cursor-pointer hover:text-primary"
-                        onClick={() => handleSort("status")}
+                        className="font-avenirNormal text-sm font-normal text-[#6B7280] leading-[120%] tracking-[0%] px-[30.25px] py-[21px]"
                       >
                         Status
-                        {sortField === "status" && (
-                          <span className="ml-1">
-                            {sortDirection === "asc" ? "↑" : "↓"}
-                          </span>
-                        )}
                       </th>
-                      <th className="text-left py-3 font-medium">Action</th>
+                      <th className="font-avenirNormal text-sm font-normal text-[#6B7280] leading-[120%] tracking-[0%] px-[39.5px] py-[21px]">Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {paginatedBookings.map((booking) => (
+                    {bookings.slice(0, 3).map((booking, index) => (
                       <tr
-                        key={booking.id}
-                        className="border-b hover:bg-gray-50"
+                        key={index}
+                        className=" hover:bg-gray-50"
                       >
-                        <td className="py-4">{booking.id}</td>
-                        <td className="py-4">{booking.dressId}</td>
-                        <td className="py-4">{booking.customer}</td>
-                        <td className="py-4">{booking.price}</td>
-                        <td className="py-4">{booking.rentalPeriod}</td>
-                        <td className="py-4">{booking.deliveryType}</td>
-                        <td className="py-4">
+                        <td className="font-avenirNormal py-[45px] px-[49.5px] text-lg font-normal text-black leading-[120%] tracking-[0%] text-center">{booking.id}</td>
+                        <td className="font-avenirNormal py-[45px] px-[49.5px] text-lg font-normal text-black leading-[120%] tracking-[0%] text-center">{booking.dressId}</td>
+                        <td className="font-avenirNormal py-[45px] px-[13px] text-lg font-normal text-black leading-[120%] tracking-[0%] text-center">{booking.customer}</td>
+                        <td className="font-avenirNormal py-[45px] px-[49.5px] text-lg font-normal text-black leading-[120%] tracking-[0%] text-center">{booking.price}</td>
+                        <td className="font-avenirNormal py-[45px] px-[49.5px] text-lg font-normal text-black leading-[120%] tracking-[0%] text-center">{booking.rentalPeriod}</td>
+                        <td className="font-avenirNormal py-[45px] px-[49.5px] text-lg font-normal text-black leading-[120%] tracking-[0%] text-center">{booking.deliveryType}</td>
+                        <td className="font-avenirNormal py-[45px] px-[49.5px] text-lg font-normal text-black leading-[120%] tracking-[0%] text-center">
                           <span
-                            className={`px-2 py-1 rounded-full text-xs ${getStatusClass(
+                            className={`px-2 py-[3px] rounded-full text-sm ${getStatusClass(
                               booking.status
                             )}`}
                           >
                             {booking.status}
                           </span>
                         </td>
-                        <td className="py-4">
+                        <td className="h-full flex items-center justify-center py-[45px] px-[37px] ">
                           <Link href={`/bookings/${booking.id}`}>
-                            <span className="px-3 py-1 text-xs bg-primary text-white rounded-md shadow-sm hover:bg-primary-dark transition-colors inline-block">
+                            <span className="font-avenirNormal text-xs font-normal text-white leading-[120%] tracking-[0%] bg-[#891D33] rounded-[8px] py-[5px] px-[10px]">
                               View
                             </span>
                           </Link>
@@ -657,11 +645,11 @@ export default function BookingsPage() {
                 </table>
               </div>
 
-              {filteredBookings.length > 0 && (
+              {bookings.length > 0 && (
                 <div className="mt-6">
                   <Pagination
                     currentPage={currentPage}
-                    totalResults={filteredBookings.length}
+                    totalResults={bookings.length}
                     resultsPerPage={itemsPerPage}
                     onPageChange={setCurrentPage}
                   />
