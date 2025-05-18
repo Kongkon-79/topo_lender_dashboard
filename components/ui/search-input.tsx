@@ -62,8 +62,8 @@ export function SearchInput({
     <div className={cn("relative", className)}>
       <Search
         className={cn(
-          "absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 transition-colors",
-          isFocused ? "text-primary" : "text-gray-400",
+          "absolute left-3 top-1/2 transform -translate-y-1/2 h-6 w-6 transition-colors",
+          isFocused ? "text-primary" : "text-[#595959]",
         )}
       />
       <input
@@ -76,7 +76,7 @@ export function SearchInput({
         onBlur={() => setIsFocused(false)}
         disabled={disabled}
         className={cn(
-          "w-full h-10 pl-10 pr-10 rounded-md border transition-colors",
+          "w-full h-[59px] pl-[60px] pr-10 rounded-md border transition-colors",
           isFocused ? "border-primary ring-1 ring-primary/20" : "border-gray-200",
           disabled && "opacity-50 cursor-not-allowed bg-gray-50",
           "focus:outline-none",
@@ -90,7 +90,7 @@ export function SearchInput({
           aria-label="Clear search"
           disabled={disabled}
         >
-          <X className="h-4 w-4" />
+          <X className="h-6 w-6" />
         </button>
       )}
     </div>

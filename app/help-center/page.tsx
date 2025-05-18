@@ -1,9 +1,10 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Layout } from "@/components/layout"
-import { SearchInput } from "@/components/ui/search-input"
-import { Plus, Minus } from "lucide-react"
+import { useState } from "react";
+import { Layout } from "@/components/layout";
+import { SearchInput } from "@/components/ui/search-input";
+import { Plus, Minus } from "lucide-react";
+import ContactForm from "./_components/contact-form";
 
 // FAQ sections with questions
 const faqSections = [
@@ -26,7 +27,8 @@ const faqSections = [
           "Go to your Account Settings, navigate to the Pickup Address section, and add your pickup location. Then ensure the 'Allow Local Pickup' option is enabled for each applicable listing.",
       },
       {
-        question: "A customer I know wants to book directly through the platform — how do I add that to my dashboard?",
+        question:
+          "A customer I know wants to book directly through the platform — how do I add that to my dashboard?",
         answer:
           "You can create a manual booking by clicking the 'Manual Booking' button in the Bookings section. Enter the customer's information and select the dress, dates, and other details.",
       },
@@ -37,8 +39,17 @@ const faqSections = [
     questions: [
       {
         question: "How do I edit or pause a listing?",
-        answer:
-          'To edit your dress listing, go to your dashboard > Listings > click "Edit" next to the item you want to update. You can adjust the price, description, photos, or availability.\n\nTo pause a listing, simply toggle it to "inactive" — it will no longer appear in the customer search but can be reactivated at any time.',
+        answer: (
+          <>
+            To edit your dress listing, go to your dashboard {">"} Listings{" "}
+            {">"} click "Edit" next to the item you want to update. You can
+            adjust the price, description, photos, or availability. <br />{" "}
+            <br />
+            To pause a listing, simply toggle it to "inactive" — it will no
+            longer appear in the customer search but can be reactivated at any
+            time.
+          </>
+        ),
       },
     ],
   },
@@ -102,71 +113,92 @@ const faqSections = [
       },
     ],
   },
-]
+];
 
 export default function HelpCenterPage() {
-  const [openSections, setOpenSections] = useState<{ [key: string]: boolean }>({})
-  const [openQuestions, setOpenQuestions] = useState<{ [key: string]: boolean }>({})
+  const [openSections, setOpenSections] = useState<{ [key: string]: boolean }>(
+    {}
+  );
+  const [openQuestions, setOpenQuestions] = useState<{
+    [key: string]: boolean;
+  }>({});
 
   const toggleSection = (title: string) => {
     setOpenSections((prev) => ({
       ...prev,
       [title]: !prev[title],
-    }))
-  }
+    }));
+  };
 
   const toggleQuestion = (question: string) => {
     setOpenQuestions((prev) => ({
       ...prev,
       [question]: !prev[question],
-    }))
-  }
+    }));
+  };
 
   return (
     <Layout>
-      <div className="p-8">
-        <h2 className="text-2xl font-bold uppercase mb-8">Help Center</h2>
+      <div className="px-[80px] pt-[80px] pb-[150px]">
+        <h2 className="text-[32px] font-normal text-black tracking-[20%] uppercase font-avenirNormal leading-[48px]">
+          Help Center
+        </h2>
 
-        <div className="mb-8">
-          <SearchInput placeholder="Search......" className="max-w-3xl" />
+        <div className="mt-[60px] mb-[30px]">
+          <SearchInput
+            placeholder="Search......"
+            className="w-full rounded-[15px] shadow-[0px_4px_10px_0px_#0000001A]  bg-white text-[24px] font-normal leading-[120%] tracking-[0%] font-avenirNormal"
+          />
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-[30px]">
           {faqSections.map((section) => (
-            <div key={section.title} className="bg-white rounded-lg shadow-sm overflow-hidden mb-4">
+            <div
+              key={section.title}
+              className="bg-white shadow-[0px_4px_10px_0px_#0000001A] rounded-[15px] p-[30px]"
+            >
               <div
-                className="p-4 border-b flex justify-between items-center cursor-pointer"
-                onClick={() => toggleSection(section.title)}
+                className="flex justify-between items-center mb-[30px]"
+                // onClick={() => toggleSection(section.title)}
               >
-                <h3 className="font-medium">{section.title}</h3>
-                {openSections[section.title] ? (
+                <h3 className="text-2xl font-normal text-black font-avenirNormal tracking-[0%] leading-[120%]">
+                  {section.title}
+                </h3>
+                {/* {openSections[section.title] ? (
                   <Minus className="h-4 w-4 text-gray-500" />
                 ) : (
                   <Plus className="h-4 w-4 text-gray-500" />
-                )}
+                )} */}
               </div>
 
-              {openSections[section.title] && (
-                <div className="p-4">
+              {!openSections[section.title] && (
+                <div className="">
                   {section.questions.map((item, index) => (
-                    <div key={index} className="border-b last:border-b-0 py-3">
+                    <div
+                      key={index}
+                      className="border border-[#E6E6E6] rounded-[15px] p-[15px] mb-[15px]"
+                    >
                       <div
                         className="flex justify-between items-center cursor-pointer"
                         onClick={() => toggleQuestion(item.question)}
                       >
-                        <h4 className="text-sm text-[#8c1c3a]">{item.question}</h4>
+                        <h4 className="text-xl font-normal text-[#891D33] leading-[120%] font-avenirNormal tracking-[0%]">
+                          {item.question}
+                        </h4>
                         <button>
                           {openQuestions[item.question] ? (
-                            <Minus className="h-4 w-4 text-gray-500" />
+                            <Minus className="h-5 w-5 text-[#891D33]" />
                           ) : (
-                            <Plus className="h-4 w-4 text-gray-500" />
+                            <Plus className="h-5 w-5 text-[#891D33]" />
                           )}
                         </button>
                       </div>
 
                       {openQuestions[item.question] && (
-                        <div className="mt-2 text-sm text-gray-700">
-                          <p>{item.answer}</p>
+                        <div className="mt-[15px]">
+                          <p className="text-base font-normal text-black font-avenirNormal leading-[120%] tracking-[0%]">
+                            {item.answer}
+                          </p>
                         </div>
                       )}
                     </div>
@@ -177,48 +209,14 @@ export default function HelpCenterPage() {
           ))}
         </div>
 
-        <div className="mt-10 bg-white rounded-lg shadow-sm p-6">
-          <h3 className="text-lg font-semibold mb-6">Contact Support</h3>
-
-          <form className="space-y-6">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
-              <input
-                type="text"
-                className="w-full p-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-primary"
-                placeholder="Subject of the Message"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
-              <textarea
-                className="w-full p-2 border rounded-md h-32 focus:outline-none focus:ring-1 focus:ring-primary"
-                placeholder="Describe your issue or question in detail!"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Attach File (optional)</label>
-              <div className="flex items-center">
-                <input
-                  type="text"
-                  className="flex-1 p-2 border rounded-l-md focus:outline-none"
-                  placeholder="File name"
-                  readOnly
-                />
-                <button type="button" className="px-4 py-2 bg-[#8c1c3a] text-white rounded-r-md">
-                  Upload File
-                </button>
-              </div>
-            </div>
-
-            <button type="submit" className="px-4 py-2 bg-[#8c1c3a] text-white rounded-md">
-              Submit Request
-            </button>
-          </form>
+        <div className="bg-white rounded-lg shadow-sm p-[30px] mt-[30px]">
+          <h3 className="text-2xl font-normal text-black font-avenirNormal leading-[120%] trackgin-[0%] mb-[30px]">
+            Contact Support
+          </h3>
+          {/* contact form  */}
+          <ContactForm />
         </div>
       </div>
     </Layout>
-  )
+  );
 }
