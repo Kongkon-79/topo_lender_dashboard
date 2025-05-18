@@ -436,7 +436,7 @@ export default function BookingsPage() {
             Bookings
           </h2>
           <Button
-            className="font-avenirNormal h-[51px] text-base font-light text-white leading-[120%] tracking-[0%] bg-[#891D33] rounded-[8px] py-4 px-8 "
+            className="font-avenirNormal h-[51px] text-base font-light text-white leading-[120%] tracking-[0%] bg-[#891D33] rounded-[8px] px-8 "
             onClick={() => setShowBookingModal(true)}
           >
             Manual Booking
@@ -449,14 +449,14 @@ export default function BookingsPage() {
               placeholder="Search ......"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="font-avenirNormal w-[264px] bg-white border border-[#E6E6E6] rounded-[8px] text-base font-normal leading-[120%] tracking-[0%] text-[#595959] placeholder:text-[#595959] placeholder:font-normal placeholder:leading-[120%] placeholder:tracking-[0%]"
+              className="font-avenirNormal h-[49px] w-[264px] border-[#E6E6E6] bg-white rounded-[8px] text-base font-normal leading-[120%] tracking-[0%] text-[#595959] placeholder:text-[#595959] placeholder:font-normal placeholder:leading-[120%] placeholder:tracking-[0%]"
             />
             <SelectDropdown
               label="Delivery Type" // this will act as the placeholder
               value={deliveryTypeFilter}
               options={["All", "Pickup", "Shipping"]}
               onChange={setDeliveryTypeFilter}
-              className="font-avenirNormal w-[200px] bg-white border border-[#E6E6E6] rounded-[8px] text-base font-normal leading-[120%] tracking-[0%] text-[#595959] placeholder:text-[#595959] placeholder:font-normal placeholder:leading-[120%] placeholder:tracking-[0%]"
+              className="font-avenirNormal h-[49px] w-[200px] p-[15px] bg-white border border-[#E6E6E6] rounded-[8px] text-base font-normal leading-[120%] tracking-[0%] text-[#595959] placeholder:text-[#595959] placeholder:font-normal placeholder:leading-[120%] placeholder:tracking-[0%]"
             />
 
             <SelectDropdown
@@ -464,14 +464,14 @@ export default function BookingsPage() {
               value={statusFilter}
               options={["All", "Pending", "Confirmed", "Shipped", "Completed"]}
               onChange={setStatusFilter}
-              className="font-avenirNormal w-[200px] bg-white border border-[#E6E6E6] rounded-[8px] text-base font-normal leading-[120%] tracking-[0%] text-[#595959] placeholder:text-[#595959] placeholder:font-normal placeholder:leading-[120%] placeholder:tracking-[0%]"
+              className="font-avenirNormal h-[49px] w-[200px] p-[15px] bg-white border border-[#E6E6E6] rounded-[8px] text-base font-normal leading-[120%] tracking-[0%] text-[#595959] placeholder:text-[#595959] placeholder:font-normal placeholder:leading-[120%] placeholder:tracking-[0%]"
             />
             <SelectDropdown
               label="Date"
               value={dateFilter}
               options={["All", "This Month", "Next Month", "Custom"]}
               onChange={setDateFilter}
-              className="font-avenirNormal w-[200px] bg-white border border-[#E6E6E6] rounded-[8px] text-base font-normal leading-[120%] tracking-[0%] text-[#595959] placeholder:text-[#595959] placeholder:font-normal placeholder:leading-[120%] placeholder:tracking-[0%]"
+              className="font-avenirNormal h-[49px] w-[200px] p-[15px] bg-white border border-[#E6E6E6] rounded-[8px] text-base font-normal leading-[120%] tracking-[0%] text-[#595959] placeholder:text-[#595959] placeholder:font-normal placeholder:leading-[120%] placeholder:tracking-[0%]"
             />
           </div>
 

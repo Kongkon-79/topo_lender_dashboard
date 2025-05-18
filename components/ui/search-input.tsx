@@ -76,8 +76,8 @@ export function SearchInput({
         onBlur={() => setIsFocused(false)}
         disabled={disabled}
         className={cn(
-          "w-full h-[59px] pl-[60px] pr-10 rounded-md border transition-colors",
-          isFocused ? "border-primary ring-1 ring-primary/20" : "border-gray-200",
+          "w-full h-[49px] pl-[60px] pr-10 rounded-md border transition-colors",
+          isFocused ? "border-primary ring-1 ring-primary/20" : "border border-[#E6E6E6]",
           disabled && "opacity-50 cursor-not-allowed bg-gray-50",
           "focus:outline-none",
         )}
