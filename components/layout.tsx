@@ -5,6 +5,7 @@ import type React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { User } from "lucide-react";
+import { signOut } from "next-auth/react";
 
 interface LayoutProps {
   children: React.ReactNode;
