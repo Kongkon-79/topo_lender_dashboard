@@ -33,7 +33,7 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 export default function SignInForm() {
-  const router = useRouter()
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
 
   const form = useForm<FormValues>({
@@ -58,13 +58,13 @@ export default function SignInForm() {
       }
       toast.success("Login successful");
       // window.location.href = "/";
-      router.push('/')
+      router.push("/");
     } catch (error) {
       console.error("Login error:", error);
       toast.error("Login failed. Please check your credentials.");
     }
 
-    console.log(values)
+    console.log(values);
   }
 
   return (
@@ -182,7 +182,7 @@ export default function SignInForm() {
           </Button>
 
           {/* Sign Up Link */}
-          <div className="text-center text-sm mt-4 md:mt-5 lg:mt-6">
+          {/* <div className="text-center text-sm mt-4 md:mt-5 lg:mt-6">
             <span className="font-poppins text-[#891D33] text-xs font-normal leading-[120%] tracking-[0%]">
               New To our Platform?
             </span>{" "}
@@ -192,7 +192,7 @@ export default function SignInForm() {
             >
               Sign Up Here
             </Link>
-          </div>
+          </div> */}
         </form>
       </Form>
     </div>

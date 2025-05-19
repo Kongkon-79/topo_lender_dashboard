@@ -8,9 +8,9 @@ export async function middleware(req: NextRequest) {
   console.log("token data", token?.role);
 
   // Not authenticated
-  //   if (!token) {
-  //     return NextResponse.redirect(new URL("/sign-in", req.url));
-  //   }
+    // if (!token) {
+    //   return NextResponse.redirect(new URL("/sign-in", req.url));
+    // }
 
   //   Not Lender
   if (token?.role !== "LENDER") {
@@ -21,5 +21,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/bookings", "/listings", "/disputes"],
+  matcher: ["/dashboard/:path*", "/dashboard"],
 };

@@ -7,7 +7,7 @@ import { SearchInput } from "@/components/ui/search-input";
 import { SelectDropdown } from "@/components/ui/select-dropdown";
 import { Pagination } from "@/components/ui/pagination";
 import { X, Download } from "lucide-react";
-import modalImage from "../../public/mIcon.png";
+// import modalImage from "../../public/mIcon.png";
 import Image from "next/image";
 
 // Sample payments data
@@ -174,7 +174,7 @@ export default function PaymentsPage() {
                 <div className="w-full">
                   <div className="flex justify-center mb-2">
                     <Image
-                      src={modalImage}
+                      src={"/mIcon.png"}
                       alt="Logo"
                       width={220}
                       height={220}

@@ -14,17 +14,16 @@ export const StatCard = memo(function StatCard({
   className,
 }: StatCardProps) {
   return (
-<<<<<<< HEAD
-    <div className={cn("bg-white h-[155px] rounded-[15px] flex items-center px-5 shadow-[0px_4px_10px_0px_#0000001A]", className)}>
+    <div
+      className={cn(
+        "bg-white h-[155px] rounded-[15px] flex items-center px-5 shadow-[0px_4px_10px_0px_#0000001A]",
+        className
+      )}
+    >
       <div>
         <h3 className={`text-sm font-medium  mb-6 ${className}`}>{title}</h3>
         <p className="text-2xl font-bold">{value}</p>
       </div>
-=======
-    <div className={cn("bg-white p-6 rounded-md shadow-sm", className)}>
-      <h3 className="text-sm font-medium text-black mb-2">{title}</h3>
-      <p className="text-2xl font-bold">{value}</p>
->>>>>>> 205f3968ba0e8565e9656e67165084c26c2509b4
     </div>
   );
 });
