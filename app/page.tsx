@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { Layout } from "@/components/layout"
-import { StatCard } from "@/components/ui/stat-card"
-import Image from "next/image"
-import Link from "next/link"
-import { ChevronDown } from "lucide-react"
+import { Layout } from "@/components/layout";
+import { StatCard } from "@/components/ui/stat-card";
+import Image from "next/image";
+import Link from "next/link";
+import { ChevronDown } from "lucide-react";
 
 // Sample dress data
 const dressData = [
@@ -44,7 +44,7 @@ const dressData = [
     price: "$XX",
     image: "/woman-black-dress.png",
   },
-]
+];
 
 // Sample booking data
 const bookingData = [
@@ -69,7 +69,7 @@ const bookingData = [
     customer: "XXXXXXX",
     image: "/woman-yellow-dress.png",
   },
-]
+];
 
 export default function OverviewPage() {
   return (
@@ -88,33 +88,40 @@ export default function OverviewPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          <StatCard title="Total Revenue" value="$#,###" className="bg-[#891d33] text-white" />
+          <StatCard
+            title="Total Revenue"
+            value="$#,###"
+            className="bg-[#891d33] text-white"
+          />
           <StatCard title="Total Rental" value="##" />
           <StatCard title="Active Booking" value="#" />
         </div>
 
         {/* Live Listings Section */}
-        <div className="bg-white p-6 rounded-lg shadow-sm mb-8">
+        <div className="bg-white p-7 rounded-[15px] shadow-[0px_4px_10px_0px_#0000001A] mb-8">
           <div className="flex justify-between items-center mb-6">
             <h3 className="text-lg font-medium">Live Listings</h3>
-            <Link href="/listings" className="text-sm text-gray-500 hover:underline">
+            <Link
+              href="/listings"
+              className="text-sm text-gray-500 hover:underline"
+            >
               VIEW ALL
             </Link>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {dressData.map((dress, index) => (
-              <div key={index} className="flex space-x-4">
+              <div key={index} className="flex">
                 <div className="w-20 h-24 overflow-hidden">
                   <Image
                     src={dress.image || "/placeholder.svg"}
                     alt={`Dress ${index + 1}`}
                     width={80}
                     height={96}
-                    className="object-cover w-full h-full rounded-sm"
+                    className="object-cover w-full h-full rounded-l-[8px]"
                   />
                 </div>
-                <div>
+                <div className="bg-[#FEFAF6] px-4 pt-2 rounded-r-[8px]">
                   <p className="text-sm font-medium">DRESS ID : {dress.id}</p>
                   <p className="text-xs text-gray-500">Brand: {dress.brand}</p>
                   <p className="text-xs text-gray-500">Price: {dress.price}</p>
@@ -126,7 +133,7 @@ export default function OverviewPage() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Calendar Section */}
-          <div className="lg:col-span-2 bg-white p-6 rounded-lg shadow-sm">
+          <div className="lg:col-span-2 bg-white p-6 rounded-[15px] shadow-[0px_4px_10px_0px_#0000001A]">
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-lg font-medium">Calendar</h3>
               <div className="flex space-x-2">
@@ -192,7 +199,9 @@ export default function OverviewPage() {
               ].map((date, index) => (
                 <div
                   key={index}
-                  className={`p-2 text-center rounded-sm ${date.month !== "current" ? "text-gray-400" : ""} relative`}
+                  className={`p-2 text-center rounded-sm ${
+                    date.month !== "current" ? "text-gray-400" : ""
+                  } relative`}
                 >
                   {date.day}
                   {date.day === 1 && date.month === "current" && (
@@ -216,31 +225,40 @@ export default function OverviewPage() {
           </div>
 
           {/* Upcoming Orders Section */}
-          <div className="bg-white p-6 rounded-lg shadow-sm">
+          <div className="bg-white p-6 rounded-[15px] shadow-[0px_4px_10px_0px_#0000001A]">
             <div className="flex justify-between items-center mb-6">
-              <h3 className="text-lg font-medium">Upcoming Orders</h3>
-              <Link href="/bookings" className="text-sm text-gray-500 hover:underline">
+              <h3 className="text-2xl font-medium">Upcoming Orders</h3>
+              <Link
+                href="/bookings"
+                className="text-sm text-gray-500 hover:underline"
+              >
                 VIEW ALL
               </Link>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-6 ">
               {bookingData.map((booking, index) => (
-                <div key={index} className="flex space-x-4">
+                <div key={index} className="flex space-x-4 bg-[#FEFAF6]">
                   <div className="w-20 h-24 overflow-hidden">
                     <Image
                       src={booking.image || "/placeholder.svg"}
                       alt={`Booking ${index + 1}`}
                       width={80}
                       height={96}
-                      className="object-cover w-full h-full rounded-sm"
+                      className="object-cover w-full h-full rounded-l-[8px]"
                     />
                   </div>
-                  <div>
-                    <p className="text-sm font-medium">BOOKING ID: {booking.id}</p>
-                    <p className="text-xs text-gray-500">Dress Id : {booking.dressId}</p>
+                  <div className="rounded-r-[8px] p-2">
+                    <p className="text-sm font-medium">
+                      BOOKING ID: {booking.id}
+                    </p>
+                    <p className="text-xs text-gray-500">
+                      Dress Id : {booking.dressId}
+                    </p>
                     <p className="text-xs text-gray-500">{booking.date}</p>
-                    <p className="text-xs text-gray-500">Customer: {booking.customer}</p>
+                    <p className="text-xs text-gray-500">
+                      Customer: {booking.customer}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -249,5 +267,5 @@ export default function OverviewPage() {
         </div>
       </div>
     </Layout>
-  )
+  );
 }

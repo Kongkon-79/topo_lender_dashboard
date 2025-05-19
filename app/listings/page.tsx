@@ -243,7 +243,9 @@ export default function ListingsPage() {
     <Layout>
       <div className="p-8 bg-[#fefaf6]">
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-2xl font-bold uppercase">MANAGE LISTINGS</h2>
+          <h2 className="text-2xl font-medium uppercase tracking-[0.5rem]">
+            MANAGE LISTINGS
+          </h2>
           <div className="flex space-x-4">
             <div className="relative">
               <button className="px-4 py-2 bg-[#891d33] text-white rounded-md flex items-center">
@@ -253,14 +255,14 @@ export default function ListingsPage() {
             </div>
             <Link href="/listings/new">
               <button className="px-4 py-2 bg-[#891d33] text-white rounded-md flex items-center">
-                <Plus className="mr-2 h-4 w-4" /> Add New Listing
+                 <span className="mr-2">Add New Listing</span> <Plus className="mr-2 h-4 w-4 text-white" />
               </button>
             </Link>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-          <div className="bg-[#891d33] p-6 rounded-md shadow-sm text-white">
+        {/* <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          <div className="bg-[#891d33] h-[150px] rounded-md shadow-sm text-white">
             <h3 className="text-sm font-medium text-white/80 mb-2">
               Most Popular Listing
             </h3>
@@ -286,15 +288,46 @@ export default function ListingsPage() {
               {isLoading ? "Loading..." : activeListings}
             </p>
           </div>
+        </div> */}
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
+          <div className="bg-[#891d33] h-[150px] rounded-md text-white flex flex-col items-start justify-center p-6 shadow-[0px_4px_10px_0px_#0000001A]">
+            <h3 className="text-sm font-medium text-white/80 mb-6 text-start">
+              Most Popular Listing
+            </h3>
+            <p className="text-2xl text-white font-medium text-center">
+              {isLoading
+                ? "Loading..."
+                : mostPopularDress?.name || "No listings"}
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-md flex flex-col items-start justify-center h-[150px] shadow-[0px_4px_10px_0px_#0000001A]">
+            <h3 className="text-sm font-medium text-gray-600 mb-6 text-center">
+              Total Listings
+            </h3>
+            <p className="text-[38px] text-black font-bold text-center">
+              {isLoading ? "Loading..." : totalListings}
+            </p>
+          </div>
+
+          <div className="bg-white p-6 rounded-md flex flex-col items-start justify-center h-[150px] shadow-[0px_4px_10px_0px_#0000001A]">
+            <h3 className="text-sm font-medium text-gray-600 mb-6 text-center">
+              Active Listings
+            </h3>
+            <p className="text-[38px] text-black font-bold text-center">
+              {isLoading ? "Loading..." : activeListings}
+            </p>
+          </div>
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm mb-8">
-          <div className="flex flex-wrap gap-4 mb-6">
-            <div className="flex-1">
-              <div className="relative">
+        <div className="bg-white p-6 rounded-lg  mb-8 shadow-[0px_4px_10px_0px_#0000001A]">
+          <div className="flex justify-between flex-wrap gap-4">
+            <div className="">
+              <div className="relative w-[500px]">
                 <input
                   type="text"
-                  placeholder="Search by name, ID, or brand..."
+                  placeholder="Search....."
                   className="w-full h-10 pl-10 pr-4 rounded-md border border-gray-200 focus:outline-none focus:ring-1 focus:ring-[#891d33]"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
@@ -316,9 +349,9 @@ export default function ListingsPage() {
               </div>
             </div>
 
-            <div className="relative">
+            <div className="relative w-[200px]">
               <select
-                className="h-10 pl-4 pr-8 rounded-md border border-gray-200 focus:outline-none focus:ring-1 focus:ring-[#891d33] appearance-none"
+                className="h-10 w-full pl-4 pr-8 text-[#595959] rounded-md border border-gray-200 focus:outline-none focus:ring-1 focus:ring-[#891d33] appearance-none"
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
               >
@@ -329,9 +362,9 @@ export default function ListingsPage() {
               <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
             </div>
 
-            <div className="relative">
+            <div className="relative w-[200px]">
               <select
-                className="h-10 pl-4 pr-8 rounded-md border border-gray-200 focus:outline-none focus:ring-1 focus:ring-[#891d33] appearance-none"
+                className="h-10 w-full pl-4 pr-8 text-[#595959] rounded-md border border-gray-200 focus:outline-none focus:ring-1 focus:ring-[#891d33] appearance-none"
                 value={sizeFilter}
                 onChange={(e) => setSizeFilter(e.target.value)}
               >
@@ -345,9 +378,9 @@ export default function ListingsPage() {
               <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
             </div>
 
-            <div className="relative">
+            <div className="relative w-[200px]">
               <select
-                className="h-10 pl-4 pr-8 rounded-md border border-gray-200 focus:outline-none focus:ring-1 focus:ring-[#891d33] appearance-none"
+                className="h-10 w-full pl-4 pr-8 text-[#595959] rounded-md border border-gray-200 focus:outline-none focus:ring-1 focus:ring-[#891d33] appearance-none"
                 value={conditionFilter}
                 onChange={(e) => setConditionFilter(e.target.value)}
               >
@@ -360,9 +393,9 @@ export default function ListingsPage() {
               <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
             </div>
 
-            <div className="relative">
+            <div className="relative w-[200px]">
               <select
-                className="h-10 pl-4 pr-8 rounded-md border border-gray-200 focus:outline-none focus:ring-1 focus:ring-[#891d33] appearance-none"
+                className="h-10 w-full pl-4 pr-8 text-[#595959] rounded-md border border-gray-200 focus:outline-none focus:ring-1 focus:ring-[#891d33] appearance-none"
                 value={deliveryFilter}
                 onChange={(e) => setDeliveryFilter(e.target.value)}
               >
@@ -375,11 +408,11 @@ export default function ListingsPage() {
             </div>
 
             <button
-              className="p-2.5 border rounded-md hover:bg-gray-50"
+              className="p-2.5 border rounded-full hover:bg-gray-50"
               onClick={clearFilters}
               title="Clear filters"
             >
-              <Filter className="h-5 w-5" />
+              <Filter className="h-5 w-5 text-red-800" />
             </button>
           </div>
 
@@ -399,7 +432,7 @@ export default function ListingsPage() {
           )}
         </div>
 
-        <div className="bg-white p-6 rounded-lg shadow-sm">
+        <div className="bg-white p-6 rounded-lg shadow-[0px_4px_10px_0px_#0000001A]">
           {isLoading ? (
             <div className="flex justify-center items-center py-20">
               <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#891d33]"></div>
@@ -409,9 +442,9 @@ export default function ListingsPage() {
               <div className="overflow-x-auto">
                 <table className="w-full text-sm">
                   <thead>
-                    <tr className="border-b">
+                    <tr className="">
                       <th
-                        className="text-left py-3 font-medium cursor-pointer hover:text-[#891d33]"
+                        className="text-left py-3 text-[#6B7280] font-medium cursor-pointer hover:text-[#891d33]"
                         onClick={() => handleSort("id")}
                       >
                         Dress ID
@@ -421,9 +454,9 @@ export default function ListingsPage() {
                           </span>
                         )}
                       </th>
-                      <th className="text-left py-3 font-medium">Thumbnails</th>
+                      <th className="text-left py-3 font-medium text-[#6B7280]">Thumbnails</th>
                       <th
-                        className="text-left py-3 font-medium cursor-pointer hover:text-[#891d33]"
+                        className="text-left py-3 text-[#6B7280] font-medium cursor-pointer hover:text-[#891d33]"
                         onClick={() => handleSort("name")}
                       >
                         Dress Name
@@ -434,7 +467,7 @@ export default function ListingsPage() {
                         )}
                       </th>
                       <th
-                        className="text-left py-3 font-medium cursor-pointer hover:text-[#891d33]"
+                        className="text-left py-3 text-[#6B7280] font-medium cursor-pointer hover:text-[#891d33]"
                         onClick={() => handleSort("price")}
                       >
                         Price
@@ -445,7 +478,7 @@ export default function ListingsPage() {
                         )}
                       </th>
                       <th
-                        className="text-left py-3 font-medium cursor-pointer hover:text-[#891d33]"
+                        className="text-left py-3 text-[#6B7280] font-medium cursor-pointer hover:text-[#891d33]"
                         onClick={() => handleSort("size")}
                       >
                         Size
@@ -456,7 +489,7 @@ export default function ListingsPage() {
                         )}
                       </th>
                       <th
-                        className="text-left py-3 font-medium cursor-pointer hover:text-[#891d33]"
+                        className="text-left py-3 text-[#6B7280] font-medium cursor-pointer hover:text-[#891d33]"
                         onClick={() => handleSort("condition")}
                       >
                         Condition
@@ -466,13 +499,13 @@ export default function ListingsPage() {
                           </span>
                         )}
                       </th>
-                      <th className="text-left py-3 font-medium">Status</th>
-                      <th className="text-left py-3 font-medium">Action</th>
+                      <th className="text-left py-3 font-medium text-[#6B7280]">Status</th>
+                      <th className="text-left py-3 font-medium text-[#6B7280]">Action</th>
                     </tr>
                   </thead>
                   <tbody>
                     {paginatedDresses.map((dress) => (
-                      <tr key={dress.id} className="border-b hover:bg-gray-50">
+                      <tr key={dress.id} className=" hover:bg-gray-50">
                         <td className="py-4">{dress.id}</td>
                         <td className="py-4">
                           <div className="w-12 h-16 overflow-hidden relative">
@@ -509,6 +542,7 @@ export default function ListingsPage() {
                   </tbody>
                 </table>
               </div>
+              <hr />
 
               {filteredDresses.length > 0 && (
                 <div className="mt-6 flex justify-between items-center">
@@ -529,6 +563,7 @@ export default function ListingsPage() {
                       {filteredDresses.length} results
                     </span>
                   </div>
+                  
                   <div className="flex space-x-1">
                     <button
                       className={`w-8 h-8 flex items-center justify-center rounded-md ${
